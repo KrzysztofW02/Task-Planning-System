@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# Task Planning System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Task Planning System repository! This is a microservices-based application built with C# in the backend and TypeScript, React, and Vite in the frontend. This system aims to streamline task management and planning for teams.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Microservices Architecture**: Built using a microservices architecture for scalability, modularity, and easy maintenance.
+- **Backend in C#**: Utilizes C# for robust backend services, ensuring efficient data handling and processing.
+- **Frontend with TypeScript, React, and Vite**: Offers a modern and responsive user interface powered by TypeScript, React, and Vite, enabling seamless user interactions and dynamic updates.
+- **Task Management**: Allows users to create, assign, prioritize, and track tasks efficiently.
+- **Team Collaboration**: Facilitates collaboration among team members by providing features for sharing tasks, commenting, and updating task statuses.
+- **Containerization**: Containerized using Docker for easy deployment and scalability across different environments.
+- **RESTful APIs**: Implements RESTful APIs for seamless communication between frontend and backend services.
+- **Authentication and Authorization**: Ensures secure access to the system with authentication and authorization mechanisms.
+- **Database Integration**: Integrates with a relational database (e.g., PostgreSQL, MySQL) for storing task-related data.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started with the Task Planning System, follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the Repository**:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+git clone https://github.com/KrzysztofW02/Task-Planning-System/
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+2. **Navigate to the Project Directory**:
+
+cd task-planning-system
+
+3. **Set Up Backend**:
+
+- Navigate to the backend directory and follow the instructions in the README.md file to set up and run the backend services.
+
+4. **Set Up Frontend**:
+
+- Navigate to the frontend directory and follow the instructions in the README.md file to set up and run the frontend application.
+- run with npm run dev
+
+## Acknowledgements
+
+- This project was inspired by the need for efficient task planning and management in modern software development environments.
+- We thank all the contributors who have helped in the development and improvement of this project. (all 4 lol)
