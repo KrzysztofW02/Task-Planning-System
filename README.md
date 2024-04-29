@@ -40,3 +40,8 @@ cd task-planning-system
 
 - This project was inspired by the need for efficient task planning and management in modern software development environments.
 - We thank all the contributors who have helped in the development and improvement of this project. (all 4 lol)
+
+
+## Running docker app:
+
+docker run --rm  -it -p="8080:8080" *image_name*
