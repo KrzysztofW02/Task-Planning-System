@@ -1,5 +1,7 @@
 # Task Planning System
 
+[![CodeFactor](https://www.codefactor.io/repository/github/krzysztofw02/task-planning-system/badge/main)](https://www.codefactor.io/repository/github/krzysztofw02/task-planning-system/overview/main)
+
 Welcome to the Task Planning System repository! This is a microservices-based application built with C# in the backend and TypeScript, React, and Vite in the frontend. This system aims to streamline task management and planning for teams.
 
 ## Features
