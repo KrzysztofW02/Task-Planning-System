@@ -44,5 +44,5 @@ cd task-planning-system
 
 ## Running docker app:
 
-docker build . -t "image_name"
-docker run --rm  -it -p="8080:8080" *image_name*
+- docker build . -t "image_name"
+- docker run --rm  -it -p="8080:8080" *image_name*
