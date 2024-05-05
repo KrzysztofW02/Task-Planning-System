@@ -1,10 +1,11 @@
-import {TaskPlanning} from "./TaskPlanning";
+import TaskPlanning from "./TaskPlanning";
 
 function App() {
-
   return (
-    <div className='App'><TaskPlanning/></div>
-  )
+    <div className="App">
+      <TaskPlanning />
+    </div>
+  );
 }
 
-export default App
+export default App;

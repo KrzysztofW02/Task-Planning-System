@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,11 +23,11 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  /*margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh;*/
 }
 
 h1 {
@@ -66,3 +66,108 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.menu {
+  width: 100%;
+  max-width: 600px; 
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.menu-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.menu-header h2 {
+  margin: 0;
+}
+
+.menu-items {
+  border-top: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+.menu-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+cursor: pointer;
+border-radius: 8px;
+margin-top: 2px;
+}
+
+
+.menu-item:hover {
+  background-color: #e0e0e0;
+}
+
+.menu-item:first-child {
+  border-top: none;
+}
+.menu-header .form-control {
+margin: 0 10px; 
+}
+
+.day-name{
+  text-align: center;
+  font-size: 30px;
+  margin-top: 100px;
+  color: #2CBFA4;
+  font-weight: bold;
+}
+
+.menu-item.selected {
+outline: 2px solid #2CBFA4; 
+outline-offset: -2px; 
+}
+
+.menu .clear-button {
+margin-top: 10px;
+}
+
+.menu-item.daily-task {
+  background-color: rgba(24, 158, 220, 0.941)
+}
+
+.menu-item > span {
+  flex-grow: 1;
+}
+
+.menu-item > div {
+  display: flex;
+  gap: 5px;
+}
+
+.centered-caption {
+  text-align: center;
+}
+
+.form-control-margin {
+  margin-bottom: 8px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
