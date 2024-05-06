@@ -16,6 +16,7 @@ interface DayComponentProps {
   tasks: Task[];
   updateTasks: (newTasks: Task[]) => void;
   onDeleteTask: (index: number) => void;
+  onBackToCalendar: () => void;
 }
 
 const DayComponent: React.FC<DayComponentProps> = ({
@@ -23,6 +24,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
   tasks,
   updateTasks,
   onDeleteTask,
+  onBackToCalendar,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
@@ -89,6 +91,13 @@ const DayComponent: React.FC<DayComponentProps> = ({
             >
               Add New Task
             </Button>
+            <Button
+              variant="outline-primary"
+              onClick={onBackToCalendar}
+              style={{ marginLeft: "15px" }}
+            >
+              Back To Calendar
+            </Button>
           </div>
           <div className="menu-items">
             {tasks.length === 0 ? (
@@ -115,7 +124,6 @@ const DayComponent: React.FC<DayComponentProps> = ({
           )}
         </div>
       </div>
-
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}

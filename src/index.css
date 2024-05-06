@@ -166,6 +166,14 @@ margin-top: 10px;
   justify-content: space-between;
 }
 
+/*.day-with-tasks {
+  background-color: #ff0;
+}*/
+
+.custom-calendar {
+  transform: scale(2.5);
+}
+
 
 
 
