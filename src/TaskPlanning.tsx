@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DayComponent from "./pages/Day/Day";
 import CalendarComponent from "./pages/Calendar/Calendar";
 
@@ -37,10 +37,19 @@ function TaskPlanning() {
     setDisplayedComponent("Day");
   };
 
+  const handleCalendarClick = () => {
+    console.log("Kliknięto element Kalendarz");
+    setDisplayedComponent("Calendar");
+  };
+
   return (
     <div>
       {displayedComponent === "Home" && (
-        <button onClick={() => handleMenuItemClick("Test")}>Test</button>
+        <div>
+          <button onClick={() => handleMenuItemClick("Test")}>Tasks</button>{" "}
+          <br></br>
+          <button onClick={() => handleCalendarClick()}>Kalendarz</button>
+        </div>
       )}
       {displayedComponent === "Day" && (
         <DayComponent
@@ -49,6 +58,14 @@ function TaskPlanning() {
           updateTasks={(newTasks) => updateTasksForDay(dayName, newTasks)}
           onDeleteTask={handleDeleteTask}
         />
+      )}
+      {displayedComponent === "Calendar" && (
+        <CalendarComponent
+          onMenuClick={handleMenuItemClick}
+          days={days}
+          setDays={setDays}
+          dailyTasks={[]}
+        ></CalendarComponent>
       )}
     </div>
   );

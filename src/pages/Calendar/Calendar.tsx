@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Task } from "../Day/type";
 
 interface CalendarComponentProps {
-  onMenuClick: (dayName: string, dailyTasks: string[]) => void;
-  days: Record<string, string[]>;
-  setDays: (newDays: Record<string, string[]>) => void;
-  dailyTasks: string[];
+  onMenuClick: (dayName: string) => void;
+  days: Record<string, Task[]>;
+  setDays: (newDays: Record<string, Task[]>) => void;
+  dailyTasks: Task[];
 }
 
 function CalendarComponent({
   onMenuClick,
   days,
   setDays,
-  dailyTasks,
 }: CalendarComponentProps) {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [showInput, setShowInput] = useState<boolean>(false);
@@ -36,7 +36,7 @@ function CalendarComponent({
   };
 
   const handleMenuClick = (dayName: string) => {
-    onMenuClick(dayName, dailyTasks);
+    onMenuClick(dayName);
   };
 
   const handleDeleteDay = (dayName: string) => {
