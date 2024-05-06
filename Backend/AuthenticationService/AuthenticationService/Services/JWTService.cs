@@ -17,7 +17,7 @@ namespace AuthenticationService.Services
             _audience = "PlanerUser";
             _secretKey = "ThisShouldBeStoredInSecurePlaceNotHere";
         }
-        public string GenerateSecurityToken(string username)
+        public string GenerateSecurityToken(string username, string userRole)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -27,6 +27,7 @@ namespace AuthenticationService.Services
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(ClaimTypes.Role, userRole)
             };
             var tokenDescriptor = new JwtSecurityToken(
                 issuer: _issuer,

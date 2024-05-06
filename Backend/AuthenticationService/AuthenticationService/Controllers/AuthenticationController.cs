@@ -28,7 +28,8 @@ namespace AuthenticationService.Controllers
             }
             if(_userService.AreUserCredendialsValid(model.Password, model.Username))
             {
-                return Ok(_JWTService.GenerateSecurityToken(model.Username));
+                var userRole = _userService.GetUserRole(model.Username);
+                return Ok(_JWTService.GenerateSecurityToken(model.Username, userRole));
             }
             else
             {
@@ -64,6 +65,12 @@ namespace AuthenticationService.Controllers
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        public int Get()
+        {
+            return 1;
         }
     }
 }

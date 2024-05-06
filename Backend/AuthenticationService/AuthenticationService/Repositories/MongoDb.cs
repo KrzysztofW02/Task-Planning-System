@@ -5,7 +5,7 @@ namespace AuthenticationService.Repositories
 {
     public class MongoDb : IMongoDb
     {
-        private static string _mongoConnectionString = "mongodb+srv://rafalzmu15:oTaYwKIhAKNOnRP6@planer.83ju39a.mongodb.net/?retryWrites=true&w=majority&appName=Planer";
+        private static string _mongoConnectionString = "mongodb+srv://rafalzmu15:planner@planer.83ju39a.mongodb.net/?retryWrites=true&w=majority&appName=Planer";
         private static MongoClient? _client;
 
         public MongoDb()
@@ -19,11 +19,7 @@ namespace AuthenticationService.Repositories
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             _client = new MongoClient(settings);
 
-            if (testDBConnection() == false)
-            {
-                throw new Exception("MongoDB connection failed");
-            }
-
+            testDBConnection();
         }
         public IMongoCollection<BsonDocument> GetCollection(string collectionName)
         {
@@ -32,19 +28,13 @@ namespace AuthenticationService.Repositories
 
         private bool testDBConnection()
         {
-            try
+            
+            var result = _client.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
+            if (result["ok"] == 1)
             {
-                var result = _client.GetDatabase("Planer").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
-                if (result["ok"] == 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-            catch (Exception)
+            else
             {
                 return false;
             }

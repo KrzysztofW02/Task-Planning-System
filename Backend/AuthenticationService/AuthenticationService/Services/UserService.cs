@@ -34,7 +34,8 @@ namespace AuthenticationService.Services
             {
                 { "Username", Username },
                 { "Password", hash },
-                { "Salt", salt }
+                { "Salt", salt },
+                { "Role", "User" }
             };
 
             _usersCollection.InsertOne(user);
@@ -61,6 +62,15 @@ namespace AuthenticationService.Services
                 return false;
             }
 
+        }
+        public string GetUserRole(string Username)
+        {
+            var user = _usersCollection.Find(Builders<BsonDocument>.Filter.Eq("Username", Username)).FirstOrDefault();
+            if (user == null)
+            {
+                return null;
+            }
+            return user["Role"].AsString;
         }
 
         private bool UserAlreadyExists(string Username)
@@ -94,7 +104,7 @@ namespace AuthenticationService.Services
             byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
             byte[] passwordWithSaltBytes = new byte[passwordBytes.Length + saltBytes.Length];
 
-            HashAlgorithm hashAlgorithm = new SHA256Managed();
+            HashAlgorithm hashAlgorithm = SHA512.Create();
 
             passwordWithSaltBytes = passwordBytes.Concat(saltBytes).ToArray();
 

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  auth:
+    build: ./AuthenticationService
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+  global:
+    build: ./GlobalTasksService
+    ports:
+      - "8081:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+  user:
+    build: ./UserTasksService
+    ports:
+      - "8082:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80

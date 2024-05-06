@@ -30,9 +30,7 @@ namespace AuthenticationService
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
+            //app.UseHttpsRedirection();
 
 
             app.MapControllers();
