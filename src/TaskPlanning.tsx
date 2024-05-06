@@ -59,15 +59,11 @@ function TaskPlanning() {
           tasks={days[dayName] || []}
           updateTasks={(newTasks) => updateTasksForDay(dayName, newTasks)}
           onDeleteTask={handleDeleteTask}
+          onBackToCalendar={handleCalendarClick}
         />
       )}
       {displayedComponent === "Calendar" && (
-        <CalendarComponent
-          onMenuClick={handleMenuItemClick}
-          days={days}
-          setDays={setDays}
-          dailyTasks={[]}
-        ></CalendarComponent>
+        <CalendarComponent onMenuClick={handleMenuItemClick} days={days} />
       )}
     </div>
   );
