@@ -173,6 +173,14 @@ margin-top: 10px;
   transform: scale(2.5);
 }
 
+/*.day-with-tasks {
+  background-color: #ff0;
+}*/
+
+.custom-calendar {
+  transform: scale(2.5);
+}
+
 .sidebar{
   width: 5%;
   height: 100vh;
@@ -198,5 +206,8 @@ margin-top: 10px;
   color: #333;
   font-weight: bold;
 }
+
+
+
 
 
