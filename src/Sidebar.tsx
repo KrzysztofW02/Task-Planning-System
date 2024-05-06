@@ -1,10 +1,10 @@
 
+
 function Sidebar() {
   return (
-    <nav className="Sidebar">
-        
-
-    </nav>
+ <div className="sidebar">
+   
+ </div>
   );
 }
 

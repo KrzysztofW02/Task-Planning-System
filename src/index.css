@@ -2,11 +2,9 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: white;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -159,8 +157,30 @@ margin-top: 10px;
   justify-content: space-between;
 }
 
+.sidebar{
+  width: 5%;
+  height: 100vh;
+  background-color: #4A4949;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+  justify-content: flex-start;
+}
 
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
 
+.sidebar li {
+  margin-bottom: 10px;
+}
 
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
 
 
