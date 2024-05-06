@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using UserTasksService.Repositories;
+using UserTasksService.Services;
 
 namespace UserTasksService
 {
@@ -34,6 +36,10 @@ namespace UserTasksService
                 };
             });
             builder.Services.AddAuthorization();
+
+            builder.Services.AddSingleton<IMongoDb, MongoDb>();
+            builder.Services.AddScoped<IUserTaskService, UserTaskService>();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
