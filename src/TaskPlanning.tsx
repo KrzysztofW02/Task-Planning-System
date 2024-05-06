@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DayComponent from "./pages/Day/Day";
 import CalendarComponent from "./pages/Calendar/Calendar";
+import Sidebar from "./Sidebar";
 
 type Task = {
   task: string;
@@ -44,6 +45,7 @@ function TaskPlanning() {
 
   return (
     <div>
+      <Sidebar />
       {displayedComponent === "Home" && (
         <div>
           <button onClick={() => handleMenuItemClick("Test")}>Tasks</button>{" "}
