@@ -32,10 +32,10 @@ namespace UserTasksService.Services
 
         public List<UserTaskDto> GetUserTasks(string userName)
         {
-            var userTasksBson = _userTasksCollection.Find(Builders<BsonDocument>.Filter.Eq("Username", userName)).ToList();
+            var userTasksBson = _userTasksCollection.Find(Builders<BsonDocument>.Filter.Eq("UserName", userName)).ToList();
             if (userTasksBson.Count == 0)
             {
-                return new List<UserTaskDto>();
+                return null;
             }
             else
             {
@@ -66,7 +66,7 @@ namespace UserTasksService.Services
             }
             var filter = Builders<BsonDocument>.Filter.And(
                 Builders<BsonDocument>.Filter.Eq("TaskName", taskName),
-                Builders<BsonDocument>.Filter.Eq("UserID", userName)
+                Builders<BsonDocument>.Filter.Eq("UserName", userName)
                 );
             _userTasksCollection.DeleteOne(filter);
             return 1;
