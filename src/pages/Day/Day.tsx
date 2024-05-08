@@ -74,12 +74,10 @@ const DayComponent: React.FC<DayComponentProps> = ({
   return (
     <>
       <div className="day-name">{dayName}</div>
-
       <div className="grid-container">
         <div className="menu">
           <div
             className="menu-header"
-            style={{ display: "flex", justifyContent: "center" }}
           >
             <Button
               variant="outline-success"
