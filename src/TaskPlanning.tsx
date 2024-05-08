@@ -53,7 +53,7 @@ function TaskPlanning() {
           <Sidebar />
         </div>
 
-        <div className="col-sm-10">
+        <div className="col-sm-10 contentcontainer">
           {displayedComponent === "Home" && (
             <div className="btns">
               <button onClick={() => handleMenuItemClick("Test")}>Tasks</button>{" "}
