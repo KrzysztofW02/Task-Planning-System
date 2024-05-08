@@ -44,27 +44,38 @@ function TaskPlanning() {
   };
 
   return (
-    <div>
-      <Sidebar />
-      {displayedComponent === "Home" && (
-        <div>
-          <button onClick={() => handleMenuItemClick("Test")}>Tasks</button>{" "}
-          <br></br>
-          <button onClick={() => handleCalendarClick()}>Kalendarz</button>
+    <div
+      className="container"
+      style={{ marginLeft: "0px", marginRight: "0px" }}
+    >
+      <div className="row justify-content-start">
+        <div className="col-sm-1" style={{ paddingLeft: "0px" }}>
+          <Sidebar />
         </div>
-      )}
-      {displayedComponent === "Day" && (
-        <DayComponent
-          dayName={dayName}
-          tasks={days[dayName] || []}
-          updateTasks={(newTasks) => updateTasksForDay(dayName, newTasks)}
-          onDeleteTask={handleDeleteTask}
-          onBackToCalendar={handleCalendarClick}
-        />
-      )}
-      {displayedComponent === "Calendar" && (
-        <CalendarComponent onMenuClick={handleMenuItemClick} days={days} />
-      )}
+
+        <div className="col-sm-10">
+          {displayedComponent === "Home" && (
+            <div className="btns">
+              <button onClick={() => handleMenuItemClick("Test")}>Tasks</button>{" "}
+              <br></br>
+              <button onClick={() => handleCalendarClick()}>Kalendarz</button>
+            </div>
+          )}
+
+          {displayedComponent === "Day" && (
+            <DayComponent
+              dayName={dayName}
+              tasks={days[dayName] || []}
+              updateTasks={(newTasks) => updateTasksForDay(dayName, newTasks)}
+              onDeleteTask={handleDeleteTask}
+              onBackToCalendar={handleCalendarClick}
+            />
+          )}
+          {displayedComponent === "Calendar" && (
+            <CalendarComponent onMenuClick={handleMenuItemClick} days={days} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
