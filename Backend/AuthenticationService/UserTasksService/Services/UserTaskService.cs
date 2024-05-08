@@ -29,7 +29,6 @@ namespace UserTasksService.Services
             return 1;
         }
 
-
         public List<UserTaskDto> GetUserTasks(string userName)
         {
             var userTasksBson = _userTasksCollection.Find(Builders<BsonDocument>.Filter.Eq("UserName", userName)).ToList();

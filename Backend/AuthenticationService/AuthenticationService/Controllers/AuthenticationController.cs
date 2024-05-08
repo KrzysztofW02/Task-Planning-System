@@ -18,7 +18,6 @@ namespace AuthenticationService.Controllers
             _JWTService = jwtService;
         }
 
-
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UserModel model)
         {
@@ -56,9 +55,7 @@ namespace AuthenticationService.Controllers
             {
                 return BadRequest("User already exists");
             }
-
         }
-
 
         // DELETE api/<AuthenticationController>/5
         [HttpDelete("{id}")]

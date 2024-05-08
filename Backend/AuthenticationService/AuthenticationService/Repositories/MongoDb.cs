@@ -28,7 +28,6 @@ namespace AuthenticationService.Repositories
 
         private bool testDBConnection()
         {
-            
             var result = _client.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
             if (result["ok"] == 1)
             {

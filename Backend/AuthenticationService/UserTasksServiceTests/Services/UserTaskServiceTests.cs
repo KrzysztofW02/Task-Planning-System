@@ -66,6 +66,5 @@ namespace UserTasksService.Services.Tests
             //Deleting test
             Assert.AreEqual(1, succesfullDeleteResult);
         }
-
     }
 }

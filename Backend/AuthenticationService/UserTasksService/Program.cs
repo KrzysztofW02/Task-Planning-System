@@ -25,7 +25,6 @@ namespace UserTasksService
             {
                 jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
                 {
-
                     ValidIssuer = config["JWTSettings:Issuer"], //validate the issuer of the token
                     ValidAudience = config["JWTSettings:Audience"], //validate the audience of the token
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWTSettings:SecretKey"])), //validate the signing key
@@ -56,11 +55,8 @@ namespace UserTasksService
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
