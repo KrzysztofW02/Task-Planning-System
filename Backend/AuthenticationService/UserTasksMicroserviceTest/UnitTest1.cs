@@ -5,8 +5,6 @@ namespace UserTasksMicroserviceTest
         [Fact]
         public void Test1()
         {
-
-        }
-        []
+        }[]
     }
 }

@@ -8,6 +8,5 @@
         public DateTime TaskStart { get; set; }
         public DateTime TaskEnd { get; set; }
         public string? GlobalTaskId { get; set; }
-
     }
 }
