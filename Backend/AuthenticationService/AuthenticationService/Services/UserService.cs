@@ -17,7 +17,6 @@ namespace AuthenticationService.Services
         }
         public int AddUser(string Username, string Password)
         {
-
             if (Username == "" || Password == "")
             {
                 return 0;
@@ -40,9 +39,8 @@ namespace AuthenticationService.Services
 
             _usersCollection.InsertOne(user);
             return 1;
-
-
         }
+
         public bool AreUserCredendialsValid(string Password, string Username)
         {
             var user = _usersCollection.Find(Builders<BsonDocument>.Filter.Eq("Username", Username)).FirstOrDefault();
@@ -61,7 +59,6 @@ namespace AuthenticationService.Services
             {
                 return false;
             }
-
         }
         public string GetUserRole(string Username)
         {
@@ -103,11 +100,8 @@ namespace AuthenticationService.Services
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
             byte[] passwordWithSaltBytes = new byte[passwordBytes.Length + saltBytes.Length];
-
             HashAlgorithm hashAlgorithm = SHA512.Create();
-
             passwordWithSaltBytes = passwordBytes.Concat(saltBytes).ToArray();
-
             return Convert.ToBase64String(hashAlgorithm.ComputeHash(passwordWithSaltBytes));
         }
     }

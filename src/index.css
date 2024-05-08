@@ -36,11 +36,12 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+
+button:focus, button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
@@ -49,13 +50,17 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
+
 }
+
 
 
 .grid-container {
@@ -101,7 +106,6 @@ border-radius: 8px;
 margin-top: 2px;
 }
 
-
 .menu-item:hover {
   background-color: #e0e0e0;
 }
@@ -109,6 +113,7 @@ margin-top: 2px;
 .menu-item:first-child {
   border-top: none;
 }
+
 .menu-header .form-control {
 margin: 0 10px; 
 }
@@ -156,10 +161,6 @@ margin-top: 10px;
   justify-content: space-between;
 }
 
-/*.day-with-tasks {
-  background-color: #ff0;
-}*/
-
 .custom-calendar {
   transform: scale(2.5);
 }
@@ -167,18 +168,6 @@ margin-top: 10px;
 /*.day-with-tasks {
   background-color: #ff0;
 }*/
-
-.custom-calendar {
-  transform: scale(2.5);
-}
-
-/*.day-with-tasks {
-  background-color: #ff0;
-}*/
-
-.custom-calendar {
-  transform: scale(2.5);
-}
 
 .sidebar{
   width: 80px;
@@ -207,7 +196,6 @@ margin-top: 10px;
 
 .btns{
   display: flex;
-
 }
 
 
