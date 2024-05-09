@@ -17,6 +17,12 @@ namespace UserTasksService.Services.Tests
         private UserTaskService _userTaskService;
         private IMongoDb _mongoDb;
         private IMapper _mapper;
+        private string userName = "TestUser";
+        private string taskName = "TestTask";
+        private string taskDescription = "TestDescription";
+        private DateTime taskStart = DateTime.Now;
+        private DateTime taskEnd = DateTime.Now;
+        private string category = "TestCategory";
 
         public UserTaskServiceTests()
         {
@@ -26,15 +32,8 @@ namespace UserTasksService.Services.Tests
         }
 
         [TestMethod()]
-        public void TaskAddGetDeleteTest()
+        public void Task1AddTest()
         {
-            //Adding test
-            string userName = "TestUser";
-            string taskName = "TestTask";
-            string taskDescription = "TestDescription";
-            DateTime taskStart = DateTime.Now;
-            DateTime taskEnd = DateTime.Now;
-            string category = "TestCategory";
             var exampleTask = new UserTask
             {
                 UserName = userName,
@@ -47,16 +46,35 @@ namespace UserTasksService.Services.Tests
             };
             int result = _userTaskService.AddUserTask(exampleTask);
 
-            Assert.AreEqual(1, result);
+            //Delete sample task
+            _userTaskService.DeleteUserTask(userName, taskName);
 
-            //Getting test
+            Assert.AreEqual(1, result);
+        }
+        [TestMethod()]
+        public void Task2GetTest()
+        {
+            //Add sample task
+            var exampleTask = new UserTask
+            {
+                UserName = userName,
+                TaskName = taskName,
+                TaskDescription = taskDescription,
+                TaskStart = taskStart,
+                TaskEnd = taskEnd,
+                GlobalTaskId = null,
+                Category = category
+            };
+            _userTaskService.AddUserTask(exampleTask);
+
+            //Get sample task
             var succesfulUserTasks = _userTaskService.GetUserTasks(userName);
             var failUserTask = _userTaskService.GetUserTasks("SomeUserThatDoeasntExist");
 
-            int succesfullDeleteResult = _userTaskService.DeleteUserTask(userName, taskName);
-            int nullFailDeleteResult = _userTaskService.DeleteUserTask(null, null);
-            int emptyFailDeleteResult = _userTaskService.DeleteUserTask("", "");
+            //Delete sample task
+            _userTaskService.DeleteUserTask(userName, taskName);
 
+            //Assert
             Assert.IsTrue(succesfulUserTasks.Count == 1);
             Assert.AreEqual(taskName, succesfulUserTasks[0].TaskName);
             Assert.AreEqual(taskDescription, succesfulUserTasks[0].TaskDescription);
@@ -69,11 +87,33 @@ namespace UserTasksService.Services.Tests
             Assert.IsTrue((taskEnd - succesfulUserTasks[0].TaskEnd) < tolerance);
 
             Assert.IsTrue(failUserTask == null);
+        }
 
-            //Deleting test
+        [TestMethod()]
+        public void Task3DeleteTest()
+        {
+            //Add sample task
+            var exampleTask = new UserTask
+            {
+                UserName = userName,
+                TaskName = taskName,
+                TaskDescription = taskDescription,
+                TaskStart = taskStart,
+                TaskEnd = taskEnd,
+                GlobalTaskId = null,
+                Category = category
+            };
+            _userTaskService.AddUserTask(exampleTask);
+
+            //Delete sample task
+            int succesfullDeleteResult = _userTaskService.DeleteUserTask(userName, taskName);
+            int nullFailDeleteResult = _userTaskService.DeleteUserTask(null, null);
+            int emptyFailDeleteResult = _userTaskService.DeleteUserTask("", "");
+
             Assert.AreEqual(1, succesfullDeleteResult);
             Assert.AreEqual(0, nullFailDeleteResult);
             Assert.AreEqual(0, emptyFailDeleteResult);
         }
+
     }
 }
