@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using UserTasksService.DTOs;
@@ -59,7 +60,7 @@ namespace UserTasksService.Services
 
         public int DeleteUserTask(string userName, string taskName)
         {
-            if(userName == "" || taskName == "")
+            if(userName.IsNullOrEmpty() || taskName.IsNullOrEmpty())
             {
                 return 0;
             }

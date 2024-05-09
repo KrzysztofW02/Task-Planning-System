@@ -51,20 +51,29 @@ namespace UserTasksService.Services.Tests
 
             //Getting test
             var succesfulUserTasks = _userTaskService.GetUserTasks(userName);
+            var failUserTask = _userTaskService.GetUserTasks("SomeUserThatDoeasntExist");
+
             int succesfullDeleteResult = _userTaskService.DeleteUserTask(userName, taskName);
+            int nullFailDeleteResult = _userTaskService.DeleteUserTask(null, null);
+            int emptyFailDeleteResult = _userTaskService.DeleteUserTask("", "");
 
             Assert.IsTrue(succesfulUserTasks.Count == 1);
             Assert.AreEqual(taskName, succesfulUserTasks[0].TaskName);
             Assert.AreEqual(taskDescription, succesfulUserTasks[0].TaskDescription);
             Assert.AreEqual(category, succesfulUserTasks[0].Category);
             Assert.AreEqual(null, succesfulUserTasks[0].GlobalTaskId);
+
             //DateTime tests with tolerance of 1 second
             var tolerance = TimeSpan.FromSeconds(1);
             Assert.IsTrue((taskStart - succesfulUserTasks[0].TaskStart) < tolerance);
             Assert.IsTrue((taskEnd - succesfulUserTasks[0].TaskEnd) < tolerance);
 
+            Assert.IsTrue(failUserTask == null);
+
             //Deleting test
             Assert.AreEqual(1, succesfullDeleteResult);
+            Assert.AreEqual(0, nullFailDeleteResult);
+            Assert.AreEqual(0, emptyFailDeleteResult);
         }
     }
 }
