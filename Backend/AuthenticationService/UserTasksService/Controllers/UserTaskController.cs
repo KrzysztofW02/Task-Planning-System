@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using UserTasksService.DTOs;
 using UserTasksService.Models;
 using UserTasksService.Services;
@@ -61,9 +62,9 @@ namespace UserTasksService.Controllers
             }
         }
         [HttpDelete]
-        public IActionResult DeleteUserTask(string UserName, string TaskName)
+        public IActionResult DeleteUserTask(string taskId)
         {
-            var result = _userTasksService.DeleteUserTask(UserName, TaskName);
+            var result = _userTasksService.DeleteUserTask(taskId);
             if(result == 1)
             {
                 return Ok();

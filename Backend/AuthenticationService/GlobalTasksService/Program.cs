@@ -1,4 +1,6 @@
 
+using GlobalTasksService.Repositories;
+using GlobalTasksService.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -35,7 +37,10 @@ namespace GlobalTasksService
             });
             // Add services to the container.
 
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IMongoDb, MongoDb>();
+            builder.Services.AddScoped<IGlobalTasksService, GlobalTaskService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

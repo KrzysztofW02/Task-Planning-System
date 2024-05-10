@@ -49,25 +49,19 @@ namespace UserTasksService.Services
             {
                 return 0;
             }
-            var filter = Builders<BsonDocument>.Filter.And(
-                Builders<BsonDocument>.Filter.Eq("TaskName", userTask.TaskName),
-                Builders<BsonDocument>.Filter.Eq("UserID", userTask.UserName)
-                );
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", userTask._id);
             _userTasksCollection.ReplaceOne(filter, _mapper.Map<BsonDocument>(userTask));
 
             return 1;
         }
 
-        public int DeleteUserTask(string userName, string taskName)
+        public int DeleteUserTask(string taskId)
         {
-            if(userName.IsNullOrEmpty() || taskName.IsNullOrEmpty())
+            if(taskId.IsNullOrEmpty())
             {
                 return 0;
             }
-            var filter = Builders<BsonDocument>.Filter.And(
-                Builders<BsonDocument>.Filter.Eq("TaskName", taskName),
-                Builders<BsonDocument>.Filter.Eq("UserName", userName)
-                );
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", taskId);
             _userTasksCollection.DeleteOne(filter);
             return 1;
         }

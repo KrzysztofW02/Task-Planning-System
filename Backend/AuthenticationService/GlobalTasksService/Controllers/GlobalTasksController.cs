@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using GlobalTasksService.Models;
+using GlobalTasksService.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace GlobalTasksService.Controllers
 {
@@ -8,80 +11,77 @@ namespace GlobalTasksService.Controllers
     [ApiController]
     public class GlobalTasksController : Controller
     {
+        private IGlobalTasksService _taskService;
+        public GlobalTasksController(IGlobalTasksService taskService)
+        {
+            _taskService = taskService;
+        }
+
         // GET: GlobalTasksController
-        [HttpGet("GetAll")]
-        public ActionResult GetAll()
+        [HttpGet]
+        public IActionResult GetAllGlobal()
         {
-            return View();
+            var globalTasks = _taskService.GetGlobalTasks(); 
+            if(globalTasks == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(globalTasks); ;
+            }
         }
 
-        // GET: GlobalTasksController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: GlobalTasksController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: GlobalTasksController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult AddGlobalTask([FromBody] GlobalTask globalTask)
         {
-            try
+            if(!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return BadRequest("Invalid data");
             }
-            catch
+            var result = _taskService.AddGlobalTask(globalTask);
+            if(result == 1)
             {
-                return View();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Error occured while trying to add task");
             }
         }
 
-        // GET: GlobalTasksController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpPut]
+        public IActionResult Edit([FromBody] GlobalTask globalTask)
         {
-            return View();
-        }
-
-        // POST: GlobalTasksController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
+            if(!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return BadRequest("Invalid data");
             }
-            catch
+            var result = _taskService.UpdateGlobalTask(globalTask);
+            if(result == 1)
             {
-                return View();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Task does not exist");
             }
         }
 
-        // GET: GlobalTasksController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpDelete]
+        public IActionResult Delete(string taskId)
         {
-            return View();
-        }
+            var result = _taskService.DeleteGlobalTask(taskId);
+            if(result == 1)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Task does not exist");
+            }
 
-        // POST: GlobalTasksController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

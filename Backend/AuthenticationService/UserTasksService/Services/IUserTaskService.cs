@@ -8,6 +8,6 @@ namespace UserTasksService.Services
         int AddUserTask(UserTask userTask);
         List<UserTaskDto> GetUserTasks(string userID);
         int UpdateUserTask(UserTask userTask);
-        int DeleteUserTask(string userID, string taskName);
+        int DeleteUserTask(string taskId);
     }
 }
