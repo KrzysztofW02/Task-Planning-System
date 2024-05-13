@@ -2,6 +2,7 @@ import { useState } from "react";
 import DayComponent from "./pages/Day/Day";
 import CalendarComponent from "./pages/Calendar/Calendar";
 import Sidebar from "./Sidebar";
+import HomeComponent from "./pages/Home/Home";
 
 type Task = {
   task: string;
@@ -45,10 +46,10 @@ function TaskPlanning() {
     setDisplayedComponent(component);
   };
 
+  //small warning, everything added here is global
   return (
     <div
-      className="container"
-      style={{ marginLeft: "0px", marginRight: "0px" }}
+      className="App"
     >
       <div className="row justify-content-start">
         <div className="col-sm-1" style={{ paddingLeft: "0px" }}>
@@ -56,8 +57,9 @@ function TaskPlanning() {
         </div>
 
         <div className="col-sm-10 contentcontainer">
-          {displayedComponent === "Home" && <div className="btns"></div>}
-
+          {displayedComponent === "Home" && (
+            <HomeComponent></HomeComponent>
+          )}
           {displayedComponent === "Day" && (
             <DayComponent
               dayName={dayName}

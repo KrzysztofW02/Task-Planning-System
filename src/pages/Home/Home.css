@@ -1,0 +1,17 @@
+.HomeComponent {
+    display: flex;
+    justify-content: center;
+}
+
+.HomeText {
+    margin-top: 10em;
+    color: white;
+    text-align: center;
+    margin-left: 4em;
+}
+
+.btnhomelogin {
+    margin-top: 1em;
+    margin-right: 0;
+    margin-left: 5em;
+}
