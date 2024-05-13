@@ -171,13 +171,14 @@ margin-top: 10px;
 }*/
 
 .sidebar{
-  width: 80px;
+  width: 100px;
   height: 100vh;
   background-color: #4A4949;
   display: flex;
   flex-direction: row;
   overflow-x: hidden;
   justify-content: flex-start;
+  justify-items: center;
 }
 
 .sidebar ul {
@@ -193,6 +194,16 @@ margin-top: 10px;
   text-decoration: none;
   color: #333;
   font-weight: bold;
+}
+
+.sidebartext{
+  margin-top: 30px;
+  margin-left: 7.5%;
+  text-align: center;
+  color: #e0e0e0;
+  font-weight: normal;
+  cursor: pointer;
+
 }
 
 .btns{

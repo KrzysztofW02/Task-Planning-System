@@ -43,6 +43,10 @@ function TaskPlanning() {
     setDisplayedComponent("Calendar");
   };
 
+    const handleSidebarItemClick = (component: "Home" | "Day" | "Calendar") => {
+      setDisplayedComponent(component);
+    }
+
   return (
     <div
       className="container"
@@ -50,7 +54,7 @@ function TaskPlanning() {
     >
       <div className="row justify-content-start">
         <div className="col-sm-1" style={{ paddingLeft: "0px" }}>
-          <Sidebar />
+          <Sidebar onSidebarItemClick={handleSidebarItemClick}/>
         </div>
 
         <div className="col-sm-10 contentcontainer">
