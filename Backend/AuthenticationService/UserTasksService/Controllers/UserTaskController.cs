@@ -17,16 +17,27 @@ namespace UserTasksService.Controllers
         {
             _userTasksService = userTasksService;
         }
-        [HttpGet]
+        [HttpGet("Get")]
         public IActionResult GetAllUserTasks(string UserName)
         {
             var userTasks = _userTasksService.GetUserTasks(UserName);
+            if(userTasks == null)
+            {
+                return NotFound("No Tasks found");
+            }
+            return Ok(userTasks);
+        }
+        [HttpGet("GetByDate")]
+        public IActionResult GetUserTasksByDay(string UserName, DateTime date)
+        {
+            var userTasks = _userTasksService.GetUserTasksByDay(UserName, date);
             if(userTasks == null)
             {
                 return NotFound();
             }
             return Ok(userTasks);
         }
+
         [HttpPost]
         public IActionResult AddUserTask([FromBody] UserTask userTask)
         {

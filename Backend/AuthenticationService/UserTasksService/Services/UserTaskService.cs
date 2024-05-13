@@ -35,6 +35,7 @@ namespace UserTasksService.Services
             var userTasksBson = _userTasksCollection.Find(Builders<BsonDocument>.Filter.Eq("UserName", userName)).ToList();
             if (userTasksBson.Count == 0)
             {
+                Console.WriteLine("No tasks found");
                 return null;
             }
             else
@@ -64,6 +65,24 @@ namespace UserTasksService.Services
             var filter = Builders<BsonDocument>.Filter.Eq("_id", taskId);
             _userTasksCollection.DeleteOne(filter);
             return 1;
+        }
+
+        public object GetUserTasksByDay(string userName, DateTime date)
+        {
+            var userTasksBson = _userTasksCollection.Find(Builders<BsonDocument>.Filter.And(
+                Builders<BsonDocument>.Filter.Eq("UserName", userName),
+                Builders<BsonDocument>.Filter.Gte("TaskStart", date.Date),
+                Builders<BsonDocument>.Filter.Lt("TaskStart", date.Date.AddDays(1))
+                )).ToList();
+            if (userTasksBson.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return _mapper.Map<List<UserTaskDto>>(userTasksBson);
+            }
+
         }
     }
 }
