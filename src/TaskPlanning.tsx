@@ -41,9 +41,9 @@ function TaskPlanning() {
     setDisplayedComponent("Calendar");
   };
 
-    const handleSidebarItemClick = (component: "Home" | "Day" | "Calendar") => {
-      setDisplayedComponent(component);
-    }
+  const handleSidebarItemClick = (component: "Home" | "Day" | "Calendar") => {
+    setDisplayedComponent(component);
+  };
 
   return (
     <div
@@ -52,17 +52,11 @@ function TaskPlanning() {
     >
       <div className="row justify-content-start">
         <div className="col-sm-1" style={{ paddingLeft: "0px" }}>
-          <Sidebar onSidebarItemClick={handleSidebarItemClick}/>
+          <Sidebar onSidebarItemClick={handleSidebarItemClick} />
         </div>
 
         <div className="col-sm-10 contentcontainer">
-          {displayedComponent === "Home" && (
-            <div className="btns">
-              <button onClick={() => handleMenuItemClick("Test")}>Tasks</button>{" "}
-              <br></br>
-              <button onClick={() => handleCalendarClick()}>Kalendarz</button>
-            </div>
-          )}
+          {displayedComponent === "Home" && <div className="btns"></div>}
 
           {displayedComponent === "Day" && (
             <DayComponent
