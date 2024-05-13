@@ -11,9 +11,7 @@ type Task = {
 };
 
 function TaskPlanning() {
-  const [displayedComponent, setDisplayedComponent] = useState<
-    "Home" | "Day" | "Calendar"
-  >("Home");
+  const [displayedComponent, setDisplayedComponent] = useState< "Home" | "Day" | "Calendar">("Home");
   const [dayName, setDayName] = useState<string>("");
   const [days, setDays] = useState<Record<string, Task[]>>({});
 
