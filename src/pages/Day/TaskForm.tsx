@@ -4,7 +4,8 @@ import { Button, FormControl } from "react-bootstrap";
 interface Task {
   task: string;
   category: string;
-  time: string;
+  timeStart: Date;
+  timeEnd: Date;
   description: string;
 }
 
@@ -12,7 +13,8 @@ interface TaskFormProps {
   onSave: (
     task: string,
     category: string,
-    time: string,
+    timeStart: Date,
+    timeEnd: Date,
     description: string
   ) => void;
   onCancel: () => void;
@@ -26,7 +28,10 @@ const TaskForm: React.FC<TaskFormProps> = ({
 }) => {
   const [task, setTask] = useState(initialTask?.task || "");
   const [category, setCategory] = useState(initialTask?.category || "");
-  const [time, setTime] = useState(initialTask?.time || "");
+  const [timeStart, setTimeStart] = useState(
+    initialTask?.timeStart || new Date()
+  );
+  const [timeEnd, setTimeEnd] = useState(initialTask?.timeEnd || new Date());
   const [description, setDescription] = useState(
     initialTask?.description || ""
   );
@@ -36,10 +41,11 @@ const TaskForm: React.FC<TaskFormProps> = ({
       alert("Task field is required");
       return;
     }
-    onSave(task, category, time, description);
+    onSave(task, category, timeStart, timeEnd, description);
     setTask("");
     setCategory("");
-    setTime("");
+    setTimeStart(new Date());
+    setTimeEnd(new Date());
     setDescription("");
   };
 
@@ -61,10 +67,15 @@ const TaskForm: React.FC<TaskFormProps> = ({
         className="form-control-margin"
       />
       <FormControl
-        type="text"
-        placeholder="Time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
+        type="datetime-local"
+        value={timeStart.toISOString().slice(0, 16)}
+        onChange={(e) => setTimeStart(new Date(e.target.value))}
+        className="form-control-margin"
+      />
+      <FormControl
+        type="datetime-local"
+        value={timeEnd.toISOString().slice(0, 16)}
+        onChange={(e) => setTimeEnd(new Date(e.target.value))}
         className="form-control-margin"
       />
       <FormControl
