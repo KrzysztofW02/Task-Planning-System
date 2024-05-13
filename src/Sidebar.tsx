@@ -8,7 +8,7 @@ function Sidebar({onSidebarItemClick}: Sidebar) {
     <div className="sidebar">
       <ul>
         <li
-          className="sidebartext"
+          className="sidebarlogo"
           style={{ marginTop: "12px", fontSize: "20px", fontWeight: "bold"}}
         >
           T4SK3R
