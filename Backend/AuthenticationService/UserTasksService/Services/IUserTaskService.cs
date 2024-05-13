@@ -9,5 +9,6 @@ namespace UserTasksService.Services
         List<UserTaskDto> GetUserTasks(string userID);
         int UpdateUserTask(UserTask userTask);
         int DeleteUserTask(string taskId);
+        object GetUserTasksByDay(string userName, DateTime date);
     }
 }

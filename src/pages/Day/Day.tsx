@@ -3,11 +3,13 @@ import { Button } from "react-bootstrap";
 import Task from "./Task";
 import TaskForm from "./TaskForm";
 import Modal from "react-modal";
+import axios from "axios";
 
 interface Task {
   task: string;
   category: string;
-  time: string;
+  timeStart: Date;
+  timeEnd: Date;
   description: string;
 }
 
@@ -29,22 +31,37 @@ const DayComponent: React.FC<DayComponentProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
-  const handleAddOrEditTask = (
+  const handleAddOrEditTask = async (
     task: string,
     category: string,
-    time: string,
+    timeStart: Date,
+    timeEnd: Date,
     description: string
   ) => {
     if (selectedTask) {
       const taskIndex = tasks.findIndex((t) => t.task === selectedTask.task);
       const newTasks = [...tasks];
-      newTasks[taskIndex] = { task, category, time, description };
+      newTasks[taskIndex] = { task, category, timeStart, timeEnd, description };
       updateTasks(newTasks);
     } else {
-      const newTask = { task, category, time, description };
+      const newTask = { task, category, timeStart, timeEnd, description };
       const newTasks = [...tasks, newTask];
       updateTasks(newTasks);
     }
+
+    try {
+      const response = await axios.post("http://localhost:8082/UserTask/", {
+        TaskName: task,
+        Category: category,
+        TimeStart: timeStart,
+        TimeEnd: timeEnd,
+        Description: description,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+
     setIsModalOpen(false);
   };
 
@@ -76,9 +93,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
       <div className="day-name">{dayName}</div>
       <div className="grid-container">
         <div className="menu">
-          <div
-            className="menu-header"
-          >
+          <div className="menu-header">
             <Button
               variant="outline-success"
               onClick={() => {

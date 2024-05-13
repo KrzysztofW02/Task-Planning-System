@@ -1,6 +1,7 @@
 export type Task = {
   task: string;
   category: string;
-  time: string;
+  timeStart: Date;
+  timeEnd: Date;
   description: string;
 };

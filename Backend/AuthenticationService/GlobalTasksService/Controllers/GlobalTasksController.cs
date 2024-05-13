@@ -7,6 +7,7 @@ using MongoDB.Bson;
 
 namespace GlobalTasksService.Controllers
 {
+    [Route("[controller]")]
     [Authorize]
     [ApiController]
     public class GlobalTasksController : Controller
