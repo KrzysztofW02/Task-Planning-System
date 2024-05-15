@@ -10,13 +10,13 @@ function HomeComponent() {
             <br></br>
             <h2>Zaloguj się, aby przejść dalej</h2>
           </div>
-          <div className="col-sm-2" style={{marginLeft:'7em'}}>
+          <div className="col-sm-2 btngrid">
             <button className="btn-primary btnhomelogin">Zaloguj Się</button>
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-10">
-            <p style={{ color: "white" }}>newinfogrid</p>
+          <div className="col-sm-9 infogrid">
+          
           </div>
         </div>
       </div>

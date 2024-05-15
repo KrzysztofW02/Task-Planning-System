@@ -53,7 +53,7 @@ function TaskPlanning() {
       className="AppBG"
     >
       <div className="row justify-content-start AppBG2">
-        <div className="col-sm-1" style={{ paddingLeft: "0px" }}>
+        <div className="col-sm-1 sidebarcontainer">
           <Sidebar onSidebarItemClick={handleSidebarItemClick} />
         </div>
 

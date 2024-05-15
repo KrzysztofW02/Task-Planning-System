@@ -1,4 +1,5 @@
 // Calendar.tsx
+import "./Calendar.css"
 import React from "react";
 import DatePicker from "react-datepicker";
 import { Task } from "../Day/Type";
@@ -33,12 +34,6 @@ function CalendarComponent({ onMenuClick, days }: CalendarComponentProps) {
   return (
     <div
       className="calendar-container"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
     >
       <DatePicker
         inline

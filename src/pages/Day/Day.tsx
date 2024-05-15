@@ -91,7 +91,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
   return (
     <>
       <div className="day-name">{dayName}</div>
-      <div className="grid-container">
+      <div className="day-grid-container">
         <div className="menu">
           <div className="menu-header">
             <Button

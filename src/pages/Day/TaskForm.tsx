@@ -1,3 +1,4 @@
+import "./Day.css";
 import React, { useState } from "react";
 import { Button, FormControl } from "react-bootstrap";
 
