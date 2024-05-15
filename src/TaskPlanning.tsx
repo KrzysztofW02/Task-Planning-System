@@ -50,9 +50,9 @@ function TaskPlanning() {
   //small warning, everything added here is global
   return (
     <div
-      className="App"
+      className="AppBG"
     >
-      <div className="row justify-content-start">
+      <div className="row justify-content-start AppBG2">
         <div className="col-sm-1" style={{ paddingLeft: "0px" }}>
           <Sidebar onSidebarItemClick={handleSidebarItemClick} />
         </div>
