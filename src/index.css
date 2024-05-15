@@ -8,6 +8,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
+  padding: 0;
 }
 
 .lato-light {
@@ -132,7 +133,6 @@ button:focus, button:focus-visible {
 .sidebar ul {
   list-style: none;
   padding: 0;
-  margin-left: 3%;
 }
 
 .sidebar li {
@@ -140,7 +140,7 @@ button:focus, button:focus-visible {
 }
 
 .sidebarlogo{
-  margin-top: 30px;
+  margin-top: 2em;
   text-align: center;
   color: #e0e0e0;
   font-weight: normal;
@@ -148,7 +148,7 @@ button:focus, button:focus-visible {
 }
 
 .sidebartext{
-  margin-top: 30px;
+  margin-top: 3em;
   text-align: center;
   color: #e0e0e0;
   font-weight: normal;
