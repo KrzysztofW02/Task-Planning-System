@@ -5,12 +5,22 @@ import TaskForm from "./TaskForm";
 import Modal from "react-modal";
 import axios from "axios";
 
+Modal.setAppElement("#root");
+
 interface Task {
   task: string;
   category: string;
   timeStart: Date;
   timeEnd: Date;
   description: string;
+}
+
+interface BackendTask {
+  taskName: string;
+  taskDescription: string;
+  taskStart: Date;
+  taskEnd: Date;
+  category: string;
 }
 
 interface DayComponentProps {
@@ -38,28 +48,46 @@ const DayComponent: React.FC<DayComponentProps> = ({
     timeEnd: Date,
     description: string
   ) => {
-    if (selectedTask) {
-      const taskIndex = tasks.findIndex((t) => t.task === selectedTask.task);
-      const newTasks = [...tasks];
-      newTasks[taskIndex] = { task, category, timeStart, timeEnd, description };
-      updateTasks(newTasks);
-    } else {
-      const newTask = { task, category, timeStart, timeEnd, description };
-      const newTasks = [...tasks, newTask];
-      updateTasks(newTasks);
-    }
+    const newBackendTask: BackendTask = {
+      taskName: task,
+      taskDescription: description,
+      taskStart: timeStart,
+      taskEnd: timeEnd,
+      category: description,
+    };
 
     try {
-      const response = await axios.post("http://localhost:8082/UserTask/", {
-        TaskName: task,
-        Category: category,
-        TimeStart: timeStart,
-        TimeEnd: timeEnd,
-        Description: description,
-      });
-      console.log(response.data);
+      const response = await axios.post(
+        "http://localhost:8082/UserTask/",
+        newBackendTask
+      );
+
+      if (response.status === 200) {
+        const newTask: Task = {
+          task,
+          category,
+          timeStart,
+          timeEnd,
+          description,
+        };
+        if (selectedTask) {
+          const taskIndex = tasks.findIndex(
+            (t) => t.task === selectedTask.task
+          );
+          const newTasks = [...tasks];
+          newTasks[taskIndex] = newTask;
+          updateTasks(newTasks);
+        } else {
+          const newTasks = [...tasks, newTask];
+          updateTasks(newTasks);
+        }
+      } else {
+        // Handle error
+        console.error("Error adding or editing task");
+      }
     } catch (error) {
-      console.error(error);
+      // Handle error
+      console.error("Error adding or editing task", error);
     }
 
     setIsModalOpen(false);
