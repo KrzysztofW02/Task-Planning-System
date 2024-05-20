@@ -16,11 +16,11 @@ interface Task {
 }
 
 interface BackendTask {
-  TaskName: string;
-  Category: string;
-  TaskStart: Date;
-  TaskEnd: Date;
-  TaskDescription: string;
+  taskName: string;
+  taskDescription: string;
+  taskStart: Date;
+  taskEnd: Date;
+  category: string;
 }
 
 interface DayComponentProps {
@@ -49,11 +49,11 @@ const DayComponent: React.FC<DayComponentProps> = ({
     description: string
   ) => {
     const newBackendTask: BackendTask = {
-      TaskName: task,
-      Category: category,
-      TaskStart: timeStart,
-      TaskEnd: timeEnd,
-      TaskDescription: description,
+      taskName: task,
+      taskDescription: description,
+      taskStart: timeStart,
+      taskEnd: timeEnd,
+      category: description,
     };
 
     try {
