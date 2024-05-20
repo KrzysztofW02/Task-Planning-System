@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import DayComponent from "./pages/Day/Day";
 import CalendarComponent from "./pages/Calendar/Calendar";
 import Sidebar from "./Sidebar";
@@ -13,16 +14,34 @@ type Task = {
 };
 
 function TaskPlanning() {
-  const [displayedComponent, setDisplayedComponent] = useState< "Home" | "Day" | "Calendar">("Home");
+  const [displayedComponent, setDisplayedComponent] = useState<
+    "Home" | "Day" | "Calendar"
+  >("Home");
   const [dayName, setDayName] = useState<string>("");
   const [days, setDays] = useState<Record<string, Task[]>>({});
 
-  const handleDeleteTask = (index: number) => {
-    const updatedTasks = (days[dayName] || []).filter((_, i) => i !== index);
-    setDays((prevDays) => ({
-      ...prevDays,
-      [dayName]: updatedTasks,
-    }));
+  const handleDeleteTask = async (index: number) => {
+    const taskToDelete = days[dayName][index];
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:8082/UserTask/Delete?taskName=${taskToDelete.task}`
+      );
+
+      if (response.status === 200) {
+        const updatedTasks = (days[dayName] || []).filter(
+          (_, i) => i !== index
+        );
+        setDays((prevDays) => ({
+          ...prevDays,
+          [dayName]: updatedTasks,
+        }));
+      } else {
+        console.error("Error deleting task");
+      }
+    } catch (error) {
+      console.error("Error deleting task", error);
+    }
   };
 
   const updateTasksForDay = (dayName: string, newTasks: Task[]) => {
