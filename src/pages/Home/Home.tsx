@@ -11,7 +11,7 @@ function HomeComponent() {
             <h2>Zaloguj się, aby przejść dalej</h2>
           </div>
           <div className="col-sm-2 btngrid">
-            <button className="btn-primary btnhomelogin">Zaloguj Się</button>
+            <button>Zaloguj Się</button>
           </div>
         </div>
         <div className="row">

@@ -2,7 +2,7 @@ import TaskPlanning from "./TaskPlanning";
 
 function App() {
   return (
-      <TaskPlanning />
+      <TaskPlanning/>
   );
 }
 
