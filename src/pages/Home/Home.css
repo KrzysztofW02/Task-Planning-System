@@ -1,19 +1,16 @@
 .HomeComponent {
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin-top: 4em;
-    margin-left: 21em;
+    margin-bottom:  24em;
+    float: top;
 }
 
 .HomeText {
-    margin-top: 10em;
     color: white;
-    text-align: center
+    text-align: center;
+    float: right;
 }
 
-.btngrid{
-    margin-left: 7em;
+.btnn{
+   float: right;
 }
 
 .infogrid{

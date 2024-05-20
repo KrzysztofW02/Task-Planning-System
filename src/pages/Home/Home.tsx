@@ -3,20 +3,17 @@ import "./Home.css"
 function HomeComponent() {
   return (
     <>
-      <div className="HomeComponent">
-        <div className="row">
-          <div className="col-sm-8 HomeText">
-            <h1>Witaj,</h1>
-            <br></br>
-            <h2>Zaloguj się, aby przejść dalej</h2>
+      <div className="container HomeComponent">
+        <div className="row" style={{display:'flex'}}>
+          <div className="col-sm-8">
+            <div className="HomeText">
+              <h1>Witaj,</h1>
+              <br></br>
+              <h2>Zaloguj się, aby przejść dalej</h2>
+            </div>
           </div>
-          <div className="col-sm-2 btngrid">
-            <button>Zaloguj Się</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-9 infogrid">
-          
+          <div className="col-sm-4">
+            <button className="btnn">Zaloguj Się</button>
           </div>
         </div>
       </div>

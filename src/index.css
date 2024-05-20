@@ -71,6 +71,7 @@ button {
   background-color: #1a1a1aaa;
   cursor: pointer;
   transition: border-color 0.25s;
+  text-wrap: nowrap;
 }
 
 button:hover {
@@ -112,8 +113,10 @@ button:focus, button:focus-visible {
   margin: 0;
 }
 
-.sidebarcontainer{
-  padding-left: 0;
+.sidebarcontainer {
+  margin: 0;
+  padding: 0;
+  width: fit-content;
 }
 
 .sidebar{
@@ -156,7 +159,11 @@ button:focus, button:focus-visible {
 }
 
 .contentcontainer {
+  display: flex;
   flex: 1;
-  margin-right: 2em;
+  padding: 0;
+  margin:0;
+  justify-content: center;
+  align-items: center;
 }
 

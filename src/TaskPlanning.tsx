@@ -49,18 +49,14 @@ function TaskPlanning() {
 
   //small warning, everything added here is global
   return (
-    <div
-      className="AppBG"
-    >
+    <div className="AppBG">
       <div className="row justify-content-start AppBG2">
         <div className="col-sm-1 sidebarcontainer">
           <Sidebar onSidebarItemClick={handleSidebarItemClick} />
         </div>
 
         <div className="col-sm-10 contentcontainer">
-          {displayedComponent === "Home" && (
-            <HomeComponent></HomeComponent>
-          )}
+          {displayedComponent === "Home" && <HomeComponent></HomeComponent>}
           {displayedComponent === "Day" && (
             <DayComponent
               dayName={dayName}
