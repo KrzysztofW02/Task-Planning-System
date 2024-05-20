@@ -6,16 +6,20 @@
 .HomeText {
     color: white;
     text-align: center;
-    float: right;
+    float: top;
+    width: 100%;
 }
 
 .btnn{
-   float: right;
+    margin-top: 2em;
 }
 
-.infogrid{
-    color:white;
+.col1{
+    display: flex;
+    width: 100%;
+}
+.col2{
+    display: flex;
     justify-content: center;
-    text-align: center;
-    margin-right: 2em;
+    align-items: center;
 }
