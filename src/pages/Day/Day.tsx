@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Task from "./Task";
 import TaskForm from "./TaskForm";
@@ -40,6 +40,34 @@ const DayComponent: React.FC<DayComponentProps> = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8082/UserTask/Get?UserName=string"
+        );
+        if (response.status === 200) {
+          console.log("Response data:", response.data);
+          const tasks: Task[] = response.data.map((task: BackendTask) => ({
+            task: task.taskName,
+            category: task.category,
+            timeStart: new Date(task.taskStart),
+            timeEnd: new Date(task.taskEnd),
+            description: task.taskDescription,
+          }));
+          console.log("Mapped tasks:", tasks);
+          updateTasks(tasks);
+        } else {
+          console.error("Error fetching tasks");
+        }
+      } catch (error) {
+        console.error("Error fetching tasks", error);
+      }
+    };
+
+    fetchTasks();
+  }, []);
 
   const handleAddOrEditTask = async (
     task: string,
