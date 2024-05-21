@@ -67,6 +67,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
     };
 
     fetchTasks();
+    //updateTasks w nawiasie?
   }, []);
 
   const handleAddOrEditTask = async (
@@ -146,51 +147,53 @@ const DayComponent: React.FC<DayComponentProps> = ({
 
   return (
     <>
-      <div className="day-name">{dayName}</div>
-      <div className="day-grid-container">
-        <div className="menu">
-          <div className="menu-header">
-            <Button
-              variant="outline-success"
-              onClick={() => {
-                setSelectedTask(null);
-                setIsModalOpen(true);
-              }}
-              style={{ alignSelf: "center" }}
-            >
-              Add New Task
-            </Button>
-            <Button
-              variant="outline-primary"
-              onClick={onBackToCalendar}
-              style={{ marginLeft: "15px" }}
-            >
-              Back To Calendar
-            </Button>
-          </div>
-          <div className="menu-items">
-            {tasks.length === 0 ? (
-              <p className="centered-caption">You haven't assigned any tasks</p>
-            ) : (
-              tasks.map((task, index) => (
-                <Task
-                  task={task.task}
-                  index={index}
-                  onDeleteTask={onDeleteTask}
-                  onClick={() => handleTaskClick(task)}
-                />
-              ))
+      <div className="container datedaygrid">
+        <div className="date">{dayName}</div>
+        <div className="day-grid-container">
+          <div className="menu">
+            <div className="menu-header">
+              <Button
+                variant="outline-dark"
+                onClick={() => {
+                  setSelectedTask(null);
+                  setIsModalOpen(true);
+                }}
+              >
+                Add New Task
+              </Button>
+              <Button
+                variant="outline-dark"
+                onClick={onBackToCalendar}
+              >
+                Back To Calendar
+              </Button>
+            </div>
+            <div className="menu-items">
+              {tasks.length === 0 ? (
+                <p className="centered-caption">
+                  You haven't assigned any tasks
+                </p>
+              ) : (
+                tasks.map((task, index) => (
+                  <Task
+                    task={task.task}
+                    index={index}
+                    onDeleteTask={onDeleteTask}
+                    onClick={() => handleTaskClick(task)}
+                  />
+                ))
+              )}
+            </div>
+            {tasks.length > 1 && (
+              <Button
+                className="clear-button"
+                variant="primary"
+                onClick={handleClearTasks}
+              >
+                Clear
+              </Button>
             )}
           </div>
-          {tasks.length > 1 && (
-            <Button
-              className="clear-button"
-              variant="primary"
-              onClick={handleClearTasks}
-            >
-              Clear
-            </Button>
-          )}
         </div>
       </div>
       <Modal

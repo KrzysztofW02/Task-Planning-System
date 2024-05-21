@@ -1,9 +1,9 @@
-.HomeComponent {
+.homeContainer {
     margin-bottom:  24em;
     float: top;
 }
 
-.HomeText {
+.text {
     color: white;
     text-align: center;
     float: top;
@@ -12,6 +12,11 @@
 
 .btnn{
     margin-top: 2em;
+}
+
+.row1{
+    display: flex;
+    flex-direction: column;
 }
 
 .col1{

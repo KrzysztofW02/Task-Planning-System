@@ -3,10 +3,10 @@ import "./Home.css"
 function HomeComponent() {
   return (
     <>
-      <div className="container HomeComponent">
-        <div className="row" style={{display:'flex', flexDirection:'column'}}>
+      <div className="container homeContainer">
+        <div className="row1">
           <div className="col1">
-            <div className="HomeText">
+            <div className="text">
               <h1>Witaj,</h1>
               <br></br>
               <h2>Zaloguj się, aby przejść dalej</h2>

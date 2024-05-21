@@ -1,4 +1,3 @@
-// Calendar.tsx
 import "./Calendar.css";
 import React from "react";
 import DatePicker from "react-datepicker";

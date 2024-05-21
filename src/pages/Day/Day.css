@@ -4,15 +4,26 @@
     align-items: center;
 }
 
-.day-name {
+.datedaygrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    flex-direction: column;
+    margin-bottom: 14rem;
+}
+
+.date {
     text-align: center;
-    font-size: 30px;
     color: #f0f0f0;
-    margin: 2em;
+    margin: 2rem;
+    font-size: 40px;
 }
 
 .menu {
     width: 100%;
+    min-width: 500px;
     max-width: 600px;
     background-color: #f0f0f0;
     border-radius: 10px;
@@ -60,7 +71,8 @@
 
 .menu-item.selected {
     outline: 2px solid #2CBFA4;
-    outline-offset: -2px;
+    /*nigdy prze nigdy nie używamy ujemnych wartości w css'ie 👹*/
+    outline-offset: 2px;
 }
 
 .menu .clear-button {
