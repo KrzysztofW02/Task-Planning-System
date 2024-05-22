@@ -1,8 +1,7 @@
 import { HomeIcon, CalendarIcon, RocketIcon } from "@radix-ui/react-icons";
 
 interface Sidebar {
-  onSidebarItemClick: (component: "Home" | "Day" | "Calendar") => void;
-
+  onSidebarItemClick: (component: "Home" | "Day" | "Calendar" | "Event" ) => void;
 }
 
 function Sidebar({onSidebarItemClick}: Sidebar) {
@@ -26,7 +25,7 @@ function Sidebar({onSidebarItemClick}: Sidebar) {
           </a>
         </li>
         <li className="sidebartext">
-          <a>
+          <a onClick={()=> onSidebarItemClick("Event")}>
             <RocketIcon style={{ scale: "1.7" }} />
           </a>
         </li>

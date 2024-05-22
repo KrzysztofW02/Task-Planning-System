@@ -4,6 +4,7 @@ import DayComponent from "./pages/Day/Day";
 import CalendarComponent from "./pages/Calendar/Calendar";
 import Sidebar from "./Sidebar";
 import HomeComponent from "./pages/Home/Home";
+import EventComponent from "./pages/Event/Event";
 
 type Task = {
   task: string;
@@ -15,7 +16,7 @@ type Task = {
 
 function TaskPlanning() {
   const [displayedComponent, setDisplayedComponent] = useState<
-    "Home" | "Day" | "Calendar"
+    "Home" | "Day" | "Calendar" | "Event"
   >("Home");
   const [dayName, setDayName] = useState<string>("");
   const [days, setDays] = useState<Record<string, Task[]>>({});
@@ -62,7 +63,7 @@ function TaskPlanning() {
     setDisplayedComponent("Calendar");
   };
 
-  const handleSidebarItemClick = (component: "Home" | "Day" | "Calendar") => {
+  const handleSidebarItemClick = (component: "Home" | "Day" | "Calendar" | "Event") => {
     setDisplayedComponent(component);
   };
 
@@ -75,8 +76,8 @@ function TaskPlanning() {
         </div>
 
         <div className="col-sm-10 contentcontainer">
-          {displayedComponent === "Home" && <HomeComponent></HomeComponent>}
-          {displayedComponent === "Day" && (
+          {displayedComponent === "Home" && <HomeComponent/>}
+          {displayedComponent === "Day" && 
             <DayComponent
               dayName={dayName}
               tasks={days[dayName] || []}
@@ -84,10 +85,11 @@ function TaskPlanning() {
               onDeleteTask={handleDeleteTask}
               onBackToCalendar={handleCalendarClick}
             />
-          )}
-          {displayedComponent === "Calendar" && (
+          }
+          {displayedComponent === "Calendar" && 
             <CalendarComponent onMenuClick={handleMenuItemClick} days={days} />
-          )}
+          }
+          {displayedComponent === "Event" && <EventComponent/>}
         </div>
       </div>
     </div>
