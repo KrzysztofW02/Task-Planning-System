@@ -12,10 +12,10 @@ function EventComponent(){
             </div>
             <div className="row ctc mt-5">
               <div className="col ctc">
-                <p>?info?</p>
+                <p>Info</p>
               </div>
-              <div className="col ctc">kalendarz</div>
-              <div className="col ctc">wydarzenia</div>
+              <div className="col ctc">Kalendarz</div>
+              <div className="col ctc">Wydarzenia</div>
             </div>
           </div>
         </div>
