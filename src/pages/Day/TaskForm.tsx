@@ -54,7 +54,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     <div>
       <FormControl
         type="text"
-        placeholder="Task"
+        placeholder="Zadanie"
         value={task}
         onChange={(e) => setTask(e.target.value)}
         className="form-control-margin"
@@ -62,7 +62,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       />
       <FormControl
         type="text"
-        placeholder="Category"
+        placeholder="Kategoria"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         className="form-control-margin"
@@ -81,15 +81,15 @@ const TaskForm: React.FC<TaskFormProps> = ({
       />
       <FormControl
         type="text"
-        placeholder="Description"
+        placeholder="Opis"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className="form-control-margin"
       />
       <div className="button-container">
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={handleSave}>Zapisz</Button>
         <Button variant="secondary" onClick={onCancel}>
-          Cancel
+          Anuluj
         </Button>
       </div>
     </div>

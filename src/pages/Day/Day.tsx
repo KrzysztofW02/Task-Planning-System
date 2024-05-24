@@ -131,6 +131,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
     setIsModalOpen(true);
   };
 
+ //?!?!?!?!?!??!
   const customStyles = {
     content: {
       top: "50%",
@@ -159,19 +160,19 @@ const DayComponent: React.FC<DayComponentProps> = ({
                   setIsModalOpen(true);
                 }}
               >
-                Add New Task
+                Dodaj nowe zadanie
               </Button>
               <Button
                 variant="outline-dark"
                 onClick={onBackToCalendar}
               >
-                Back To Calendar
+                Powrót
               </Button>
             </div>
             <div className="menu-items">
               {tasks.length === 0 ? (
                 <p className="centered-caption">
-                  You haven't assigned any tasks
+                  Nie przypisałeś(aś) żadnych zadań
                 </p>
               ) : (
                 tasks.map((task, index) => (

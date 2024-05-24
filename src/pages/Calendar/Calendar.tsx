@@ -1,8 +1,12 @@
 import "./Calendar.css";
 import React from "react";
+import pl from "date-fns/locale/pl"
 import DatePicker from "react-datepicker";
+import { registerLocale } from "react-datepicker";
 import { Task } from "../Day/Type";
 import "react-datepicker/dist/react-datepicker.css";
+import "date-fns";
+registerLocale("pl", pl);
 
 interface CalendarComponentProps {
   onMenuClick: (dayName: string) => void;
@@ -23,6 +27,7 @@ function CalendarComponent({ onMenuClick, days }: CalendarComponentProps) {
   return (
     <div className="calendar-container">
       <DatePicker
+        locale="pl"
         inline
         onChange={handleDayClick}
         dayClassName={highlightWithTasks}
