@@ -6,17 +6,14 @@ function EventComponent(){
       <>
         <div className="container eventContainer">
           <div className="row ctc">
-            <div className="col ctc">
-              <h1>Witaj,</h1><br/>
-              <h2>{"nazwa użytkownika"}</h2>
+            <div className="card box1" style={{width: "18rem"}}>
+            <div className="card-body">
+              <h5 className="card-title">Card title</h5>
+             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
             </div>
-            <div className="row ctc mt-5">
-              <div className="col ctc">
-                <p>Info</p>
-              </div>
-              <div className="col ctc">Kalendarz</div>
-              <div className="col ctc">Wydarzenia</div>
-            </div>
+
+          </div>
           </div>
         </div>
       </>

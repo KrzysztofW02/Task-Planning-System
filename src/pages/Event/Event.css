@@ -12,3 +12,8 @@
 .mt{
     margin-top: 12rem;
 }
+
+.box1{
+    background-color: #00000097 !important;
+    color: white !important;
+}
