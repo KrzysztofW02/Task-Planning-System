@@ -15,6 +15,9 @@ function HomeComponent() {
           <div className="col2">
             <button className="btnn">Zaloguj Się</button>
           </div>
+          <div className="col2">
+            <button className="btnn">Zarejestruj Się</button>
+          </div>
         </div>
       </div>
     </>

@@ -5,6 +5,8 @@ import CalendarComponent from "./pages/Calendar/Calendar";
 import Sidebar from "./Sidebar";
 import HomeComponent from "./pages/Home/Home";
 import EventComponent from "./pages/Event/Event";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 type Task = {
   task: string;
@@ -16,7 +18,7 @@ type Task = {
 
 function TaskPlanning() {
   const [displayedComponent, setDisplayedComponent] = useState<
-    "Home" | "Day" | "Calendar" | "Event"
+    "Home" | "Day" | "Calendar" | "Event" | "LoginPage" | "RegisterPage"
   >("Home");
   const [dayName, setDayName] = useState<string>("");
   const [days, setDays] = useState<Record<string, Task[]>>({});
@@ -67,6 +69,17 @@ function TaskPlanning() {
     setDisplayedComponent(component);
   };
 
+  const handleLoginClick = () => {
+    console.log("Kliknięto element Login");
+    setDisplayedComponent("LoginPage");
+  };
+
+  const handleRegisterClick = () => {
+    console.log("Kliknięto element Register");
+    setDisplayedComponent("RegisterPage");
+  };
+  
+
   //small warning, everything added here is global
   return (
     <div className="AppBG">
@@ -75,9 +88,12 @@ function TaskPlanning() {
           <Sidebar onSidebarItemClick={handleSidebarItemClick} />
         </div>
 
+        {/*<button onClick={() => handleLoginClick()}>Login</button>
+          <button onClick={() => handleRegisterClick()}>Register</button>*/}
+          
         <div className="col-sm-10 contentcontainer">
-          {displayedComponent === "Home" && <HomeComponent/>}
-          {displayedComponent === "Day" && 
+          {displayedComponent === "Home" && <HomeComponent />}
+          {displayedComponent === "Day" && (
             <DayComponent
               dayName={dayName}
               tasks={days[dayName] || []}
@@ -85,11 +101,16 @@ function TaskPlanning() {
               onDeleteTask={handleDeleteTask}
               onBackToCalendar={handleCalendarClick}
             />
-          }
-          {displayedComponent === "Calendar" && 
+          )}
+          {displayedComponent === "Calendar" && (
             <CalendarComponent onMenuClick={handleMenuItemClick} days={days} />
-          }
-          {displayedComponent === "Event" && <EventComponent/>}
+          )}
+          {displayedComponent === "LoginPage" && <LoginPage></LoginPage>}
+
+          {displayedComponent === "RegisterPage" && (
+            <RegisterPage></RegisterPage>
+          )}
+          {displayedComponent === "Event" && <EventComponent />}
         </div>
       </div>
     </div>
