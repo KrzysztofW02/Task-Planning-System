@@ -13,10 +13,10 @@ function HomeComponent() {
             </div>
           </div>
           <div className="col2">
-            <button className="btnn">Zaloguj Się</button>
+            <button className="btnn">Zaloguj się</button>
           </div>
           <div className="col2">
-            <button className="btnn">Zarejestruj Się</button>
+            <button className="btnn">Zarejestruj się</button>
           </div>
         </div>
       </div>
