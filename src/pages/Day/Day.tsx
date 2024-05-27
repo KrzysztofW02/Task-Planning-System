@@ -16,10 +16,11 @@ interface Task {
 }
 
 interface BackendTask {
+  userName: string;
   taskName: string;
   taskDescription: string;
-  taskStart: Date;
-  taskEnd: Date;
+  taskStart: string;
+  taskEnd: string;
   category: string;
 }
 
@@ -56,7 +57,6 @@ const DayComponent: React.FC<DayComponentProps> = ({
             timeEnd: new Date(task.taskEnd),
             description: task.taskDescription,
           }));
-          console.log("Mapped tasks:", tasks);
           updateTasks(tasks);
         } else {
           console.error("Error fetching tasks");
@@ -67,7 +67,6 @@ const DayComponent: React.FC<DayComponentProps> = ({
     };
 
     fetchTasks();
-    //updateTasks w nawiasie?
   }, []);
 
   const handleAddOrEditTask = async (
@@ -78,11 +77,12 @@ const DayComponent: React.FC<DayComponentProps> = ({
     description: string
   ) => {
     const newBackendTask: BackendTask = {
+      userName: "string",
       taskName: task,
       taskDescription: description,
-      taskStart: timeStart,
-      taskEnd: timeEnd,
-      category: description,
+      taskStart: timeStart.toISOString(),
+      taskEnd: timeEnd.toISOString(),
+      category: category,
     };
 
     try {
@@ -111,11 +111,9 @@ const DayComponent: React.FC<DayComponentProps> = ({
           updateTasks(newTasks);
         }
       } else {
-        // Handle error
         console.error("Error adding or editing task");
       }
     } catch (error) {
-      // Handle error
       console.error("Error adding or editing task", error);
     }
 
@@ -131,7 +129,37 @@ const DayComponent: React.FC<DayComponentProps> = ({
     setIsModalOpen(true);
   };
 
- //?!?!?!?!?!??!
+  const parseDayName = (dayName: string): Date | null => {
+    const dateParts = dayName.split(".");
+    if (dateParts.length === 3) {
+      const day = parseInt(dateParts[0], 10);
+      const month = parseInt(dateParts[1], 10) - 1; // Months are 0-based in JS
+      const year = parseInt(dateParts[2], 10);
+      return new Date(year, month, day);
+    }
+    return null;
+  };
+
+  const filterTasksForDay = (tasks: Task[], dayName: string) => {
+    const dayDate = parseDayName(dayName);
+    if (!dayDate) {
+      console.error("Invalid dayName format:", dayName);
+      return [];
+    }
+    dayDate.setHours(0, 0, 0, 0);
+
+    return tasks.filter((task) => {
+      const startDate = new Date(task.timeStart);
+      const endDate = new Date(task.timeEnd);
+
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(0, 0, 0, 0);
+      return startDate <= dayDate && endDate >= dayDate;
+    });
+  };
+
+  const filteredTasks = filterTasksForDay(tasks, dayName);
+
   const customStyles = {
     content: {
       top: "50%",
@@ -162,21 +190,19 @@ const DayComponent: React.FC<DayComponentProps> = ({
               >
                 Dodaj nowe zadanie
               </Button>
-              <Button
-                variant="outline-dark"
-                onClick={onBackToCalendar}
-              >
+              <Button variant="outline-dark" onClick={onBackToCalendar}>
                 Powrót
               </Button>
             </div>
             <div className="menu-items">
-              {tasks.length === 0 ? (
+              {filteredTasks.length === 0 ? (
                 <p className="centered-caption">
                   Nie przypisałeś(aś) żadnych zadań
                 </p>
               ) : (
-                tasks.map((task, index) => (
+                filteredTasks.map((task, index) => (
                   <Task
+                    key={index}
                     task={task.task}
                     index={index}
                     onDeleteTask={onDeleteTask}
@@ -185,7 +211,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
                 ))
               )}
             </div>
-            {tasks.length > 1 && (
+            {tasks.length > 1 && filteredTasks.length > 1 && (
               <Button
                 className="clear-button"
                 variant="primary"
