@@ -5,9 +5,11 @@ namespace GlobalTasksService.Services
 {
     public interface IGlobalTasksService
     {
+        List<GlobalTask> GetGlobalTasks();
+        GlobalTask GetGlobalTaskById(string globalTaskId);
         int AddGlobalTask(GlobalTask globalTask);
         int DeleteGlobalTask(string globalTaskId);
-        List<GlobalTask> GetGlobalTasks();
         int UpdateGlobalTask(GlobalTask globalTask);
+        int AddParticipant(string globalTaskId, string participantUserName);
     }
 }

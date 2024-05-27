@@ -8,20 +8,22 @@ using MongoDB.Bson;
 namespace GlobalTasksService.Controllers
 {
     [Route("[controller]")]
-    [Authorize]
     [ApiController]
     public class GlobalTasksController : Controller
     {
         private IGlobalTasksService _taskService;
-        public GlobalTasksController(IGlobalTasksService taskService)
+        private IMessageService _messageService;
+        public GlobalTasksController(IGlobalTasksService taskService, IMessageService massageService)
         {
             _taskService = taskService;
+            _messageService = massageService;
         }
 
         // GET: GlobalTasksController
         [HttpGet]
         public IActionResult GetAllGlobal()
         {
+            System.Diagnostics.Debug.WriteLine("GelAll");
             var globalTasks = _taskService.GetGlobalTasks(); 
             if(globalTasks == null)
             {
@@ -30,6 +32,20 @@ namespace GlobalTasksService.Controllers
             else
             {
                 return Ok(globalTasks); ;
+            }
+        }
+
+        [HttpGet("{taskId}")]
+        public IActionResult GetGlobalTaskById(string taskId)
+        {
+            var globalTask = _taskService.GetGlobalTaskById(taskId);
+            if(globalTask == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(globalTask);
             }
         }
 
@@ -49,6 +65,19 @@ namespace GlobalTasksService.Controllers
             else
             {
                 return BadRequest("Error occured while trying to add task");
+            }
+        }
+        [HttpPost("AddParticipant")]
+        public IActionResult AddParticipantToGlobalTask(string username, string globalTaskId)
+        {
+            var result = _taskService.AddParticipant(globalTaskId, username);
+            if (result == 1)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
             }
         }
 

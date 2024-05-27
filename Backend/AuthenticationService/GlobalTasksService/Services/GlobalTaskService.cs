@@ -13,9 +13,11 @@ namespace GlobalTasksService.Services
         private IMongoDb _mongoDb;
         private IMongoCollection<BsonDocument> _globalTasksColleciton;
         private IMapper _mapper;
-        public GlobalTaskService(IMongoDb mongoDb, IMapper mapper)
+        private IMessageService _messageService;
+        public GlobalTaskService(IMongoDb mongoDb, IMapper mapper, IMessageService messageService)
         {
             _mapper = mapper;
+            _messageService = messageService;
             _mongoDb = mongoDb;
             _globalTasksColleciton = _mongoDb.GetCollection("globalTasks");
         }
@@ -24,6 +26,13 @@ namespace GlobalTasksService.Services
             var allTasks = _globalTasksColleciton.Find(new BsonDocument()).ToList();
 
             return _mapper.Map<List<GlobalTask>>(allTasks);
+        }
+        
+        public GlobalTask GetGlobalTaskById(string globalTaskId)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", globalTaskId);
+            var globalTask = _globalTasksColleciton.Find(filter).FirstOrDefault();
+            return _mapper.Map<GlobalTask>(globalTask);
         }
 
         public int AddGlobalTask(GlobalTask globalTask)
@@ -67,6 +76,27 @@ namespace GlobalTasksService.Services
             {
                 return 0;
             }
+        }
+        public int AddParticipant(string globalTaskId, string participantUserName)
+        {
+            //var filter = Builders<BsonDocument>.Filter.Eq("_id", globalTaskId);
+            //var update = Builders<BsonDocument>.Update.Push("Participants", participantUserName);
+            //var result = _globalTasksColleciton.UpdateOne(filter, update);
+
+            //Send message to userTasksService to add task to user
+                
+            _messageService.SendMessage(participantUserName, globalTaskId);
+
+
+            //if(result.ModifiedCount > 0)
+            //{
+            //    return 1;
+            //}
+            //else
+            //{
+            //    return 0;
+            //}
+            return 1;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using UserTasksService.DTOs;
 using UserTasksService.Models;
 using UserTasksService.Services;
@@ -13,13 +15,17 @@ namespace UserTasksService.Controllers
     public class UserTaskController : Controller
     {
         private IUserTaskService _userTasksService;
-        public UserTaskController(IUserTaskService userTasksService)
+        private IMessageService _messageService;
+        public UserTaskController(IUserTaskService userTasksService, IMessageService messageService)
         {
             _userTasksService = userTasksService;
+            _messageService = messageService;
         }
         [HttpGet("Get")]
         public IActionResult GetAllUserTasks(string UserName)
         {
+            var username = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            Console.WriteLine(username);
             var userTasks = _userTasksService.GetUserTasks(UserName);
             if(userTasks == null)
             {
