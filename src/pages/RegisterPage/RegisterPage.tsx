@@ -6,6 +6,7 @@ import { useState } from "react";
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -21,6 +22,7 @@ function RegisterPage() {
 
       if (response.status === 200) {
         console.log("Registration was successful");
+        setIsRegistered(true);
       } else {
         console.error("Error during registration");
       }
@@ -28,6 +30,10 @@ function RegisterPage() {
       console.error("Error during registration", error);
     }
   };
+
+  if (isRegistered) {
+    return <p>Udało Ci się pomyślnie zarejestrować!</p>;
+  }
 
   return (
     <div className="login-container">
