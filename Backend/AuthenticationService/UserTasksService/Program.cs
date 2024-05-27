@@ -38,6 +38,7 @@ namespace UserTasksService
 
             builder.Services.AddSingleton<IMongoDb, MongoDb>();
             builder.Services.AddScoped<IUserTaskService, UserTaskService>();
+            builder.Services.AddScoped<IMessageService, MessageService>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddControllers();
