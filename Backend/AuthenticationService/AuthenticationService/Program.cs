@@ -13,6 +13,14 @@ namespace AuthenticationService
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowMyOrigin",
+                    builder => builder.WithOrigins("http://localhost:4173")
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader());
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -29,6 +37,8 @@ namespace AuthenticationService
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("AllowMyOrigin");
             //app.UseHttpsRedirection();
             app.MapControllers();
             app.Run();
