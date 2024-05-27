@@ -65,7 +65,9 @@ function TaskPlanning() {
     setDisplayedComponent("Calendar");
   };
 
-  const handleSidebarItemClick = (component: "Home" | "Day" | "Calendar" | "Event") => {
+  const handleSidebarItemClick = (
+    component: "Home" | "Day" | "Calendar" | "Event"
+  ) => {
     setDisplayedComponent(component);
   };
 
@@ -78,7 +80,6 @@ function TaskPlanning() {
     console.log("Kliknięto element Register");
     setDisplayedComponent("RegisterPage");
   };
-  
 
   //small warning, everything added here is global
   return (
@@ -88,11 +89,14 @@ function TaskPlanning() {
           <Sidebar onSidebarItemClick={handleSidebarItemClick} />
         </div>
 
-        {/*<button onClick={() => handleLoginClick()}>Login</button>
-          <button onClick={() => handleRegisterClick()}>Register</button>*/}
-          
         <div className="col-sm-10 contentcontainer">
-          {displayedComponent === "Home" && <HomeComponent />}
+          {displayedComponent === "Home" && (
+            <HomeComponent
+              onLoginClick={handleLoginClick}
+              onRegisterClick={handleRegisterClick}
+            />
+          )}
+
           {displayedComponent === "Day" && (
             <DayComponent
               dayName={dayName}
@@ -105,7 +109,9 @@ function TaskPlanning() {
           {displayedComponent === "Calendar" && (
             <CalendarComponent onMenuClick={handleMenuItemClick} days={days} />
           )}
-          {displayedComponent === "LoginPage" && <LoginPage></LoginPage>}
+          {displayedComponent === "LoginPage" && (
+            <LoginPage onRegisterClick={handleRegisterClick}></LoginPage>
+          )}
 
           {displayedComponent === "RegisterPage" && (
             <RegisterPage></RegisterPage>

@@ -1,6 +1,11 @@
-import "./Home.css"
+import "./Home.css";
 
-function HomeComponent() {
+interface HomeComponentProps {
+  onLoginClick: () => void;
+  onRegisterClick: () => void;
+}
+
+function HomeComponent({ onLoginClick, onRegisterClick }: HomeComponentProps) {
   return (
     <>
       <div className="container homeContainer">
@@ -13,10 +18,26 @@ function HomeComponent() {
             </div>
           </div>
           <div className="col2">
-            <button className="btnn">Zaloguj Się</button>
+            <button
+              className="btnn"
+              onClick={() => {
+                console.log("Login button clicked");
+                onLoginClick();
+              }}
+            >
+              Zaloguj Się
+            </button>
           </div>
           <div className="col2">
-            <button className="btnn">Zarejestruj Się</button>
+            <button
+              className="btnn"
+              onClick={() => {
+                console.log("Register button clicked");
+                onRegisterClick();
+              }}
+            >
+              Zarejestruj Się
+            </button>
           </div>
         </div>
       </div>
