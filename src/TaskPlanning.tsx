@@ -22,6 +22,7 @@ function TaskPlanning() {
   >("Home");
   const [dayName, setDayName] = useState<string>("");
   const [days, setDays] = useState<Record<string, Task[]>>({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleDeleteTask = async (index: number) => {
     const taskToDelete = days[dayName][index];
@@ -81,13 +82,18 @@ function TaskPlanning() {
     setDisplayedComponent("RegisterPage");
   };
 
-  //small warning, everything added here is global
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <div className="AppBG">
       <div className="row justify-content-start AppBG2">
-        <div className="col-sm-1 sidebarcontainer">
-          <Sidebar onSidebarItemClick={handleSidebarItemClick} />
-        </div>
+        {isLoggedIn && (
+          <div className="col-sm-1 sidebarcontainer">
+            <Sidebar onSidebarItemClick={handleSidebarItemClick} />
+          </div>
+        )}
 
         <div className="col-sm-10 contentcontainer">
           {displayedComponent === "Home" && (
@@ -110,7 +116,10 @@ function TaskPlanning() {
             <CalendarComponent onMenuClick={handleMenuItemClick} days={days} />
           )}
           {displayedComponent === "LoginPage" && (
-            <LoginPage onRegisterClick={handleRegisterClick}></LoginPage>
+            <LoginPage
+              onRegisterClick={handleRegisterClick}
+              onLoginSuccess={handleLoginSuccess}
+            ></LoginPage>
           )}
 
           {displayedComponent === "RegisterPage" && (

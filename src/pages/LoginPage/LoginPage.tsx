@@ -5,9 +5,10 @@ import Button from "react-bootstrap/Button";
 
 interface LoginPageProps {
   onRegisterClick: () => void;
+  onLoginSuccess: () => void;
 }
 
-function LoginPage({ onRegisterClick }: LoginPageProps) {
+function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ function LoginPage({ onRegisterClick }: LoginPageProps) {
       if (response.status === 200) {
         console.log("Login successful");
         setIsLoggedIn(true);
+        onLoginSuccess();
       }
     } catch (error) {
       console.error("Error during login", error);
