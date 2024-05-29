@@ -23,7 +23,7 @@ namespace GlobalTasksService.Controllers
         [HttpGet]
         public IActionResult GetAllGlobal()
         {
-            System.Diagnostics.Debug.WriteLine("GelAll");
+            _messageService.SendMessage("GlobalTasksController", "GetAllGlobal");
             var globalTasks = _taskService.GetGlobalTasks(); 
             if(globalTasks == null)
             {

@@ -15,7 +15,7 @@ namespace UserTasksService.Services
         {
             var factory = new ConnectionFactory
             {
-                HostName = "localhost",
+                HostName = "rabbitmq",
                 UserName = "guest",
                 Password = "guest",
                 Port = 5672
