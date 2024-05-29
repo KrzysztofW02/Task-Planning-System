@@ -7,18 +7,24 @@ services:
       - "8080:80"
     environment:
       - ASPNETCORE_URLS=http://+:80
+    networks:
+      - mynetwork
   global:
     build: ./GlobalTasksService
     ports:
       - "8081:80"
     environment:
       - ASPNETCORE_URLS=http://+:80
+    networks:
+      - mynetwork
   user:
     build: ./UserTasksService
     ports:
       - "8082:80"
     environment:
       - ASPNETCORE_URLS=http://+:80
+    networks:
+      - mynetwork
 
   rabbitmq:
     image: "rabbitmq:3-management"
@@ -28,3 +34,9 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: "guest"
       RABBITMQ_DEFAULT_PASS: "guest"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
