@@ -1,19 +1,29 @@
-import { HomeIcon, CalendarIcon, RocketIcon, ExitIcon } from "@radix-ui/react-icons";
+import {
+  HomeIcon,
+  CalendarIcon,
+  RocketIcon,
+  ExitIcon,
+} from "@radix-ui/react-icons";
 
 interface Sidebar {
   onSidebarItemClick: (
-    component: "HomeForUsers" | "Day" | "Calendar" | "Event" | "Logout"
+    component: "Home" | "HomeForUsers" | "Day" | "Calendar" | "Event" | "Logout"
   ) => void;
 }
 
 function Sidebar({ onSidebarItemClick }: Sidebar) {
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    onSidebarItemClick("Home");
+  };
+
   return (
     <div className="sidebar">
       <ul>
         <li
           className="sidebarlogo"
           style={{ marginTop: "12px", fontSize: "20px", fontWeight: "bold" }}
-        > 
+        >
           T4SK3R
         </li>
         <li className="sidebartext">
@@ -32,8 +42,9 @@ function Sidebar({ onSidebarItemClick }: Sidebar) {
           </a>
         </li>
         <li className="sidebartext sidebarlogout">
-          <a onClick={()=> onSidebarItemClick("Logout")}></a>
-          <ExitIcon style={{ scale: "1.7", }}></ExitIcon>
+          <a onClick={handleLogout}>
+            <ExitIcon style={{ scale: "1.7" }} />
+          </a>
         </li>
       </ul>
     </div>

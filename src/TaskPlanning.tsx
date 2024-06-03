@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import DayComponent from "./pages/Day/Day";
 import CalendarComponent from "./pages/Calendar/Calendar";
@@ -9,7 +9,6 @@ import LogoutComponent from "./pages/LogoutPage/LogoutPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HomeForUsersComponent from "./pages/Home/HomeForUsers";
-
 
 type Task = {
   task: string;
@@ -34,6 +33,13 @@ function TaskPlanning() {
   const [days, setDays] = useState<Record<string, Task[]>>({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    if (!localStorage.getItem("authToken")) {
+      setIsLoggedIn(false);
+      setDisplayedComponent("Home");
+    }
+  }, []);
 
   const handleDeleteTask = async (index: number) => {
     const taskToDelete = days[dayName][index];
@@ -82,8 +88,12 @@ function TaskPlanning() {
   };
 
   const handleSidebarItemClick = (
-    component: "HomeForUsers" | "Day" | "Calendar" | "Event" | "Logout"
+    component: "Home" | "HomeForUsers" | "Day" | "Calendar" | "Event" | "Logout"
   ) => {
+    if (component === "Home") {
+      setIsLoggedIn(false);
+      localStorage.removeItem("authToken");
+    }
     setDisplayedComponent(component);
   };
 
@@ -96,7 +106,6 @@ function TaskPlanning() {
     console.log("Kliknięto element Register");
     setDisplayedComponent("RegisterPage");
   };
-
 
   const handleLoginSuccess = (username: string) => {
     setIsLoggedIn(true);
@@ -149,10 +158,9 @@ function TaskPlanning() {
           )}
 
           {displayedComponent === "RegisterPage" && (
-            <RegisterPage
-            onLoginClick={handleLoginClick}></RegisterPage>
+            <RegisterPage onLoginClick={handleLoginClick}></RegisterPage>
           )}
-          {displayedComponent === "Logout" && <LogoutComponent/>}
+          {displayedComponent === "Logout" && <LogoutComponent />}
           {displayedComponent === "Event" && <EventComponent />}
         </div>
       </div>
