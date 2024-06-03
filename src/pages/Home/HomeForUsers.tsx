@@ -14,43 +14,39 @@ function HomeForUsersComponent({
   username,
 }: HomeForUsersComponentProps) {
   return (
-    <>
-      <div className="container homeContainer">
-        <div className="row1">
-          <div className="col1">
-            <div className="text">
-              <h2>Witaj {username}!</h2>
-              <br></br>
-              <br></br>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-6">
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>Calendar</Card.Title>
-                <Card.Text>Check your calendar</Card.Text>
-                <Button variant="primary" onClick={onCalendarClick}>
-                  Go to Calendar
-                </Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="col-sm-6">
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>Events</Card.Title>
-                <Card.Text>Check your events</Card.Text>
-                <Button variant="primary" onClick={onEventsClick}>
-                  Go to Events
-                </Button>
-              </Card.Body>
-            </Card>
+    <div className="container homeContainer">
+      <div className="row1">
+        <div className="col1">
+          <div className="text">
+            <h1>Witaj {username}!</h1>
+            <br></br>
           </div>
         </div>
       </div>
-    </>
+
+      <div className="rowU2">
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>Kalendarz</Card.Title>
+            <Card.Text>Sprawdź swój Kalendarz</Card.Text>
+            <button onClick={onCalendarClick}>
+              Idź do kalendarza
+            </button>
+          </Card.Body>
+        </Card>
+
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>Wydarzenia</Card.Title>
+            <Card.Text>Sprawdź swoje wydarzenia</Card.Text>
+            <button onClick={onEventsClick}>
+              Idź do wydarzeń
+            </button>
+          </Card.Body>
+        </Card>
+      </div>
+
+    </div>
   );
 }
 

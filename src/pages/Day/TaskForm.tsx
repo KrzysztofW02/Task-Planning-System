@@ -87,10 +87,10 @@ const TaskForm: React.FC<TaskFormProps> = ({
         className="form-control-margin"
       />
       <div className="button-container">
-        <Button onClick={handleSave}>Zapisz</Button>
-        <Button variant="secondary" onClick={onCancel}>
+        <button onClick={handleSave}>Zapisz</button>
+        <button onClick={onCancel}>
           Anuluj
-        </Button>
+        </button>
       </div>
     </div>
   );

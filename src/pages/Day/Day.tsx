@@ -171,6 +171,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
       width: "50%",
       height: "50%",
       borderRadius: "20px",
+      backgroundColor:"#000000aa",
     },
   };
 
@@ -181,18 +182,17 @@ const DayComponent: React.FC<DayComponentProps> = ({
         <div className="day-grid-container">
           <div className="menu">
             <div className="menu-header">
-              <Button
-                variant="outline-dark"
+              <button
                 onClick={() => {
                   setSelectedTask(null);
                   setIsModalOpen(true);
                 }}
               >
                 Dodaj nowe zadanie
-              </Button>
-              <Button variant="outline-dark" onClick={onBackToCalendar}>
+              </button>
+              <button onClick={onBackToCalendar}>
                 Powrót
-              </Button>
+              </button>
             </div>
             <div className="menu-items">
               {filteredTasks.length === 0 ? (
@@ -212,13 +212,12 @@ const DayComponent: React.FC<DayComponentProps> = ({
               )}
             </div>
             {tasks.length > 1 && filteredTasks.length > 1 && (
-              <Button
+              <button
                 className="clear-button"
-                variant="primary"
                 onClick={handleClearTasks}
               >
-                Clear
-              </Button>
+                Wyczyść
+              </button>
             )}
           </div>
         </div>

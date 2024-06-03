@@ -20,7 +20,7 @@ const Task: React.FC<TaskProps> = ({ task, index, onDeleteTask, onClick }) => (
           onDeleteTask(index);
         }}
       >
-        X
+        Remove
       </Button>
     </div>
   </div>
