@@ -30,6 +30,7 @@ interface DayComponentProps {
   updateTasks: (newTasks: Task[]) => void;
   onDeleteTask: (index: number) => void;
   onBackToCalendar: () => void;
+  username: string;
 }
 
 const DayComponent: React.FC<DayComponentProps> = ({
@@ -38,15 +39,24 @@ const DayComponent: React.FC<DayComponentProps> = ({
   updateTasks,
   onDeleteTask,
   onBackToCalendar,
+  username,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        console.error("No token found, please login");
+        return;
+      }
+
       try {
+        console.log("Fetching tasks for user:", username);
         const response = await axios.get(
-          "http://localhost:8082/UserTask/Get?UserName=string"
+          `http://localhost:8082/UserTask/Get?UserName=${username}`,
+          { headers: { Authorization: `Bearer ${token}` } }
         );
         if (response.status === 200) {
           console.log("Response data:", response.data);
@@ -76,8 +86,14 @@ const DayComponent: React.FC<DayComponentProps> = ({
     timeEnd: Date,
     description: string
   ) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("No token found, please login");
+      return;
+    }
+
     const newBackendTask: BackendTask = {
-      userName: "string",
+      userName: username,
       taskName: task,
       taskDescription: description,
       taskStart: timeStart.toISOString(),
@@ -88,7 +104,8 @@ const DayComponent: React.FC<DayComponentProps> = ({
     try {
       const response = await axios.post(
         "http://localhost:8082/UserTask/",
-        newBackendTask
+        newBackendTask,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.status === 200) {
@@ -133,7 +150,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
     const dateParts = dayName.split(".");
     if (dateParts.length === 3) {
       const day = parseInt(dateParts[0], 10);
-      const month = parseInt(dateParts[1], 10) - 1; // Months are 0-based in JS
+      const month = parseInt(dateParts[1], 10) - 1;
       const year = parseInt(dateParts[2], 10);
       return new Date(year, month, day);
     }

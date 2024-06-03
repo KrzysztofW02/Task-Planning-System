@@ -94,7 +94,7 @@ function TaskPlanning() {
     setDisplayedComponent("RegisterPage");
   };
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (username: string) => {
     setIsLoggedIn(true);
     setUsername(username);
     setDisplayedComponent("HomeForUsers");
@@ -131,6 +131,7 @@ function TaskPlanning() {
               updateTasks={(newTasks) => updateTasksForDay(dayName, newTasks)}
               onDeleteTask={handleDeleteTask}
               onBackToCalendar={handleCalendarClick}
+              username={username}
             />
           )}
           {displayedComponent === "Calendar" && (
