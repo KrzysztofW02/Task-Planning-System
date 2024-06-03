@@ -1,10 +1,12 @@
 import { HomeIcon, CalendarIcon, RocketIcon } from "@radix-ui/react-icons";
 
 interface Sidebar {
-  onSidebarItemClick: (component: "Home" | "Day" | "Calendar" | "Event" ) => void;
+  onSidebarItemClick: (
+    component: "HomeForUsers" | "Day" | "Calendar" | "Event"
+  ) => void;
 }
 
-function Sidebar({onSidebarItemClick}: Sidebar) {
+function Sidebar({ onSidebarItemClick }: Sidebar) {
   return (
     <div className="sidebar">
       <ul>
@@ -15,8 +17,8 @@ function Sidebar({onSidebarItemClick}: Sidebar) {
           T4SK3R
         </li>
         <li className="sidebartext">
-          <a onClick={() => onSidebarItemClick("Home")}>
-            <HomeIcon style={{ scale: "1.7" }}/>
+          <a onClick={() => onSidebarItemClick("HomeForUsers")}>
+            <HomeIcon style={{ scale: "1.7" }} />
           </a>
         </li>
         <li className="sidebartext">
@@ -25,7 +27,7 @@ function Sidebar({onSidebarItemClick}: Sidebar) {
           </a>
         </li>
         <li className="sidebartext">
-          <a onClick={()=> onSidebarItemClick("Event")}>
+          <a onClick={() => onSidebarItemClick("Event")}>
             <RocketIcon style={{ scale: "1.7" }} />
           </a>
         </li>
