@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 
 interface LoginPageProps {
   onRegisterClick: () => void;
-  onLoginSuccess: (username: string) => void;
+  onLoginSuccess: (username: string, token: string) => void;
 }
 
 function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
@@ -27,8 +27,16 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
 
       if (response.status === 200) {
         console.log("Login successful");
-        setIsLoggedIn(true);
-        onLoginSuccess(username);
+        console.log("Response data:", response.data);
+
+        const token = response.data;
+        if (token) {
+          localStorage.setItem("authToken", token);
+          setIsLoggedIn(true);
+          onLoginSuccess(username, token);
+        } else {
+          console.error("Token not found in the response");
+        }
       }
     } catch (error) {
       console.error("Error during login", error);
