@@ -1,9 +1,14 @@
+import "./RegisterPage.css"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState } from "react";
 
-function RegisterPage() {
+interface RegisterPageProps{
+  onLoginClick: () => void;
+}
+
+function RegisterPage({onLoginClick}: RegisterPageProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
@@ -43,8 +48,7 @@ function RegisterPage() {
             <Form.Label htmlFor="username">Login</Form.Label>
             <Form.Control
               id="username"
-              placeholder="Recipient's username"
-              aria-label="Recipient's username"
+              placeholder="Nazwa użytkownika"
               aria-describedby="basic-addon2"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -56,20 +60,21 @@ function RegisterPage() {
             <Form.Control
               type="password"
               id="password"
-              aria-describedby="passwordHelpBlock"
-              placeholder="Password's username"
+              placeholder="Hasło"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{marginBottom:'8px'}}
+              style={{ marginBottom: "8px" }}
             />
             <Form.Text id="passwordHelpBlock" muted>
-              Twoje hasło musi mieć od 8 do 20 znaków, posiadiać znak specjalny i liczbę oraz nie może zawierać spacji i emoji
+              Twoje hasło musi mieć od 8 do 20 znaków, posiadiać znak specjalny
+              i liczbę oraz nie może zawierać spacji i emoji
             </Form.Text>
           </Form.Group>
           <br />
-          <button type="submit">
-            Zarejestruj się
-          </button>
+          <div className="buttonregister">
+            <button type="submit">Zarejestruj się</button>
+            <button onClick={onLoginClick}>Powrót</button>
+          </div>
         </Form>
       </div>
     </div>

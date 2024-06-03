@@ -57,8 +57,7 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Recipient's username"
-              aria-label="Recipient's username"
+              placeholder="Nazwa użytkownika"
               aria-describedby="basic-addon2"
             />
           </Form.Group>
@@ -71,7 +70,7 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
               onChange={(e) => setPassword(e.target.value)}
               id="inputPassword5"
               aria-describedby="passwordHelpBlock"
-              placeholder="Password's username"
+              placeholder="Hasło"
               style={{ marginBottom: "8px" }}
             />
 

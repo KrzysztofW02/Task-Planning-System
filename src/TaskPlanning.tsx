@@ -94,6 +94,7 @@ function TaskPlanning() {
     setDisplayedComponent("RegisterPage");
   };
 
+
   const handleLoginSuccess = (username: string) => {
     setIsLoggedIn(true);
     setUsername(username);
@@ -145,7 +146,8 @@ function TaskPlanning() {
           )}
 
           {displayedComponent === "RegisterPage" && (
-            <RegisterPage></RegisterPage>
+            <RegisterPage
+            onLoginClick={handleLoginClick}></RegisterPage>
           )}
           {displayedComponent === "Event" && <EventComponent />}
         </div>
