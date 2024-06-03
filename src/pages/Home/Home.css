@@ -1,9 +1,11 @@
 .homeContainer {
-    margin-bottom:  24em;
     float: top;
+    min-height: 100vh;
+    overflow-y: hidden !important; 
 }
 
 .text {
+    margin-top: 5rem;
     color: white;
     text-align: center;
     float: top;
