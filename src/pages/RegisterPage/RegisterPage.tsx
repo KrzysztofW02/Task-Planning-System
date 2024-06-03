@@ -60,6 +60,7 @@ function RegisterPage() {
               placeholder="Password's username"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              style={{marginBottom:'8px'}}
             />
             <Form.Text id="passwordHelpBlock" muted>
               Your password must be 8-20 characters long, contain letters and
@@ -68,9 +69,9 @@ function RegisterPage() {
             </Form.Text>
           </Form.Group>
           <br />
-          <Button variant="primary" type="submit">
+          <button type="submit">
             Register
-          </Button>
+          </button>
         </Form>
       </div>
     </div>

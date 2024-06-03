@@ -1,7 +1,7 @@
+import "./LoginPage.css";
 import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 
 interface LoginPageProps {
   onRegisterClick: () => void;
@@ -72,6 +72,7 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
               id="inputPassword5"
               aria-describedby="passwordHelpBlock"
               placeholder="Password's username"
+              style={{ marginBottom: "8px" }}
             />
             <Form.Text id="passwordHelpBlock" muted>
               Your password must be 8-20 characters long, contain letters and
@@ -80,12 +81,12 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
             </Form.Text>
           </Form.Group>
           <br />
-          <Button variant="primary" type="submit">
-            Login
-          </Button>
-          <button type="button" onClick={onRegisterClick}>
-            Register
-          </button>
+          <div className="buttonsloginpage">
+            <button type="submit">Login</button>
+            <button type="button" onClick={onRegisterClick}>
+              Register
+            </button>
+          </div>
         </Form>
       </div>
     </div>
