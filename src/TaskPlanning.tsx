@@ -8,6 +8,7 @@ import EventComponent from "./pages/Event/Event";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HomeForUsersComponent from "./pages/Home/HomeForUsers";
+import LogoutPage from "./pages/LogoutPage/LogoutPage";
 
 type Task = {
   task: string;
@@ -26,6 +27,7 @@ function TaskPlanning() {
     | "LoginPage"
     | "RegisterPage"
     | "HomeForUsers"
+    | "Logout"
   >("Home");
   const [dayName, setDayName] = useState<string>("");
   const [days, setDays] = useState<Record<string, Task[]>>({});
@@ -79,7 +81,7 @@ function TaskPlanning() {
   };
 
   const handleSidebarItemClick = (
-    component: "HomeForUsers" | "Day" | "Calendar" | "Event"
+    component: "HomeForUsers" | "Day" | "Calendar" | "Event" | "Logout"
   ) => {
     setDisplayedComponent(component);
   };
@@ -149,6 +151,7 @@ function TaskPlanning() {
             <RegisterPage
             onLoginClick={handleLoginClick}></RegisterPage>
           )}
+          {displayedComponent === "Logout" && <LogoutPage/>}
           {displayedComponent === "Event" && <EventComponent />}
         </div>
       </div>

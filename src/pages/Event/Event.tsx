@@ -8,7 +8,7 @@ function EventComponent() {
           <div className="card" style={{ width: "32rem" }}>
             <div className="card-body">
               <h5 className="card-title">Wydarzenia</h5>
-              <p className="card-text">
+              <div className="card-text">
                 <ul>
                   {/*kod mapowania wydarzenia na li*/}
                   <li
@@ -18,7 +18,7 @@ function EventComponent() {
                     
                   </li>
                 </ul>
-              </p>
+              </div>
               <div className="input-group mb-3">
                 <input
                   type="text"

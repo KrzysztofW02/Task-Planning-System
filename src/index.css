@@ -193,6 +193,10 @@ button:focus, button:focus-visible {
   cursor: pointer;
 }
 
+.sidebarlogout{
+  margin-top: 50vh;
+}
+
 .contentcontainer {
   display: flex;
   flex: 1;
