@@ -5,10 +5,11 @@ import CalendarComponent from "./pages/Calendar/Calendar";
 import Sidebar from "./Sidebar";
 import HomeComponent from "./pages/Home/Home";
 import EventComponent from "./pages/Event/Event";
+import LogoutComponent from "./pages/LogoutPage/LogoutPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HomeForUsersComponent from "./pages/Home/HomeForUsers";
-import LogoutPage from "./pages/LogoutPage/LogoutPage";
+
 
 type Task = {
   task: string;
@@ -151,7 +152,7 @@ function TaskPlanning() {
             <RegisterPage
             onLoginClick={handleLoginClick}></RegisterPage>
           )}
-          {displayedComponent === "Logout" && <LogoutPage/>}
+          {displayedComponent === "Logout" && <LogoutComponent/>}
           {displayedComponent === "Event" && <EventComponent />}
         </div>
       </div>

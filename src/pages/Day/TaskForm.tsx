@@ -1,6 +1,6 @@
 import "./Day.css";
 import React, { useState } from "react";
-import { Button, FormControl } from "react-bootstrap";
+import { FormControl } from "react-bootstrap";
 
 interface Task {
   task: string;
