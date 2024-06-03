@@ -49,10 +49,10 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
 
   return (
     <div className="login-container">
-      <div className="login-form">
+      <div className="login-form" style={{minWidth:'330px'}}>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>Login</Form.Label>
+            <Form.Label>Zaloguj się</Form.Label>
             <Form.Control
               type="text"
               value={username}
@@ -64,7 +64,7 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
           </Form.Group>
           <br />
           <Form.Group>
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Hasło</Form.Label>
             <Form.Control
               type="password"
               value={password}
@@ -74,17 +74,13 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
               placeholder="Password's username"
               style={{ marginBottom: "8px" }}
             />
-            <Form.Text id="passwordHelpBlock" muted>
-              Your password must be 8-20 characters long, contain letters and
-              numbers, and must not contain spaces, special characters, or
-              emoji.
-            </Form.Text>
+
           </Form.Group>
           <br />
           <div className="buttonsloginpage">
-            <button type="submit">Login</button>
+            <button type="submit" style={{marginRight:'40px'}}>Zaloguj się</button>
             <button type="button" onClick={onRegisterClick}>
-              Register
+              Zarejestruj się
             </button>
           </div>
         </Form>

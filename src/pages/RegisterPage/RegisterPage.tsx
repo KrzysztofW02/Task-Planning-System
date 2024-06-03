@@ -52,7 +52,7 @@ function RegisterPage() {
           </Form.Group>
           <br />
           <Form.Group>
-            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Label htmlFor="password">Hasło</Form.Label>
             <Form.Control
               type="password"
               id="password"
@@ -63,14 +63,12 @@ function RegisterPage() {
               style={{marginBottom:'8px'}}
             />
             <Form.Text id="passwordHelpBlock" muted>
-              Your password must be 8-20 characters long, contain letters and
-              numbers, and must not contain spaces, special characters, or
-              emoji.
+              Twoje hasło musi mieć od 8 do 20 znaków, posiadiać znak specjalny i liczbę oraz nie może zawierać spacji i emoji
             </Form.Text>
           </Form.Group>
           <br />
           <button type="submit">
-            Register
+            Zarejestruj się
           </button>
         </Form>
       </div>
