@@ -7,6 +7,7 @@ import axios from "axios";
 Modal.setAppElement("#root");
 
 interface Task {
+  id: string;
   task: string;
   category: string;
   timeStart: Date;
@@ -15,6 +16,7 @@ interface Task {
 }
 
 interface BackendTask {
+  _id: string;
   userName: string;
   taskName: string;
   taskDescription: string;
@@ -27,7 +29,7 @@ interface DayComponentProps {
   dayName: string;
   tasks: Task[];
   updateTasks: (newTasks: Task[]) => void;
-  onDeleteTask: (index: number) => void;
+  onDeleteTask: (id: string) => void;
   onBackToCalendar: () => void;
   username: string;
 }
@@ -59,13 +61,18 @@ const DayComponent: React.FC<DayComponentProps> = ({
         );
         if (response.status === 200) {
           console.log("Response data:", response.data);
-          const tasks: Task[] = response.data.map((task: BackendTask) => ({
-            task: task.taskName,
-            category: task.category,
-            timeStart: new Date(task.taskStart),
-            timeEnd: new Date(task.taskEnd),
-            description: task.taskDescription,
-          }));
+          const tasks: Task[] = response.data.map((task: BackendTask) => {
+            const mappedTask = {
+              id: task._id,
+              task: task.taskName,
+              category: task.category,
+              timeStart: new Date(task.taskStart),
+              timeEnd: new Date(task.taskEnd),
+              description: task.taskDescription,
+            };
+            console.log("Mapped task:", mappedTask);
+            return mappedTask;
+          });
           updateTasks(tasks);
         } else {
           console.error("Error fetching tasks");
@@ -78,7 +85,44 @@ const DayComponent: React.FC<DayComponentProps> = ({
     fetchTasks();
   }, []);
 
+  const fetchTasks = async () => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("No token found, please login");
+      return;
+    }
+
+    try {
+      console.log("Fetching tasks for user:", username);
+      const response = await axios.get(
+        `http://localhost:8082/UserTask/Get?UserName=${username}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response.status === 200) {
+        console.log("Response data:", response.data);
+        const tasks: Task[] = response.data.map((task: BackendTask) => {
+          const mappedTask = {
+            id: task._id,
+            task: task.taskName,
+            category: task.category,
+            timeStart: new Date(task.taskStart),
+            timeEnd: new Date(task.taskEnd),
+            description: task.taskDescription,
+          };
+          console.log("Mapped task:", mappedTask);
+          return mappedTask;
+        });
+        updateTasks(tasks);
+      } else {
+        console.error("Error fetching tasks");
+      }
+    } catch (error) {
+      console.error("Error fetching tasks", error);
+    }
+  };
+
   const handleAddOrEditTask = async (
+    id: string,
     task: string,
     category: string,
     timeStart: Date,
@@ -91,7 +135,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
       return;
     }
 
-    const newBackendTask: BackendTask = {
+    const newBackendTask: Partial<BackendTask> = {
       userName: username,
       taskName: task,
       taskDescription: description,
@@ -99,6 +143,10 @@ const DayComponent: React.FC<DayComponentProps> = ({
       taskEnd: timeEnd.toISOString(),
       category: category,
     };
+
+    if (id) {
+      newBackendTask._id = id;
+    }
 
     try {
       const response = await axios.post(
@@ -108,24 +156,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
       );
 
       if (response.status === 200) {
-        const newTask: Task = {
-          task,
-          category,
-          timeStart,
-          timeEnd,
-          description,
-        };
-        if (selectedTask) {
-          const taskIndex = tasks.findIndex(
-            (t) => t.task === selectedTask.task
-          );
-          const newTasks = [...tasks];
-          newTasks[taskIndex] = newTask;
-          updateTasks(newTasks);
-        } else {
-          const newTasks = [...tasks, newTask];
-          updateTasks(newTasks);
-        }
+        fetchTasks();
       } else {
         console.error("Error adding or editing task");
       }
@@ -187,7 +218,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
       width: "50%",
       height: "50%",
       borderRadius: "20px",
-      backgroundColor:"#000000aa",
+      backgroundColor: "#000000aa",
     },
   };
 
@@ -206,9 +237,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
               >
                 Dodaj nowe zadanie
               </button>
-              <button onClick={onBackToCalendar}>
-                Powrót
-              </button>
+              <button onClick={onBackToCalendar}>Powrót</button>
             </div>
             <div className="menu-items">
               {filteredTasks.length === 0 ? (
@@ -218,9 +247,9 @@ const DayComponent: React.FC<DayComponentProps> = ({
               ) : (
                 filteredTasks.map((task, index) => (
                   <Task
-                    key={index}
+                    key={task.id || index}
                     task={task.task}
-                    index={index}
+                    id={task.id}
                     onDeleteTask={onDeleteTask}
                     onClick={() => handleTaskClick(task)}
                   />
@@ -228,10 +257,7 @@ const DayComponent: React.FC<DayComponentProps> = ({
               )}
             </div>
             {tasks.length > 1 && filteredTasks.length > 1 && (
-              <button
-                className="clear-button"
-                onClick={handleClearTasks}
-              >
+              <button className="clear-button" onClick={handleClearTasks}>
                 Wyczyść
               </button>
             )}

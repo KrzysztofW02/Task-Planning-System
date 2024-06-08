@@ -1,29 +1,33 @@
-import "./Day.css";
 import React from "react";
 import { Button } from "react-bootstrap";
 
 interface TaskProps {
   task: string;
-  index: number;
-  onDeleteTask: (index: number) => void;
+  id: string;
+  onDeleteTask: (id: string) => void;
   onClick: () => void;
 }
 
-const Task: React.FC<TaskProps> = ({ task, index, onDeleteTask, onClick }) => (
-  <div className="menu-item" onClick={onClick}>
-    <span>{task}</span>
-    <div>
-      <Button
-        variant="outline-danger"
-        onClick={(e) => {
-          e.stopPropagation();
-          onDeleteTask(index);
-        }}
-      >
-        Remove
-      </Button>
+const Task: React.FC<TaskProps> = ({ task, id, onDeleteTask, onClick }) => {
+  console.log("Rendering Task component with id:", id);
+
+  return (
+    <div className="menu-item" onClick={onClick}>
+      <span>{task}</span>
+      <div>
+        <Button
+          variant="outline-danger"
+          onClick={(e) => {
+            e.stopPropagation();
+            console.log("Button clicked for task id:", id);
+            onDeleteTask(id);
+          }}
+        >
+          Remove
+        </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Task;

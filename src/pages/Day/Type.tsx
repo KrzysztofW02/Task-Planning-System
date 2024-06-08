@@ -1,4 +1,5 @@
 export type Task = {
+  id: string;
   task: string;
   category: string;
   timeStart: Date;

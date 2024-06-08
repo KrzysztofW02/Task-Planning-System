@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FormControl } from "react-bootstrap";
 
 interface Task {
+  id: string;
   task: string;
   category: string;
   timeStart: Date;
@@ -12,6 +13,7 @@ interface Task {
 
 interface TaskFormProps {
   onSave: (
+    id: string,
     task: string,
     category: string,
     timeStart: Date,
@@ -27,6 +29,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   onCancel,
   initialTask,
 }) => {
+  const id = initialTask?.id || "";
   const [task, setTask] = useState(initialTask?.task || "");
   const [category, setCategory] = useState(initialTask?.category || "");
   const [timeStart, setTimeStart] = useState(
@@ -42,7 +45,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       alert("Task field is required");
       return;
     }
-    onSave(task, category, timeStart, timeEnd, description);
+    onSave(id, task, category, timeStart, timeEnd, description);
     setTask("");
     setCategory("");
     setTimeStart(new Date());
@@ -88,9 +91,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       />
       <div className="button-container">
         <button onClick={handleSave}>Zapisz</button>
-        <button onClick={onCancel}>
-          Anuluj
-        </button>
+        <button onClick={onCancel}>Anuluj</button>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HomeForUsersComponent from "./pages/Home/HomeForUsers";
 
 type Task = {
+  id: string;
   task: string;
   category: string;
   timeStart: Date;
@@ -41,18 +42,19 @@ function TaskPlanning() {
     }
   }, []);
 
-  const handleDeleteTask = async (index: number) => {
-    const taskToDelete = days[dayName][index];
+  const handleDeleteTask = async (id: string) => {
+    console.log("Deleting task with id:", id);
 
     try {
       const response = await axios.delete(
-        `http://localhost:8082/UserTask/Delete?taskName=${taskToDelete.task}`
+        `http://localhost:8082/UserTask?taskId=${id}`
       );
 
       if (response.status === 200) {
         const updatedTasks = (days[dayName] || []).filter(
-          (_, i) => i !== index
+          (task) => task.id !== id
         );
+        console.log("Updated tasks after deletion:", updatedTasks);
         setDays((prevDays) => ({
           ...prevDays,
           [dayName]: updatedTasks,
@@ -66,6 +68,7 @@ function TaskPlanning() {
   };
 
   const updateTasksForDay = (dayName: string, newTasks: Task[]) => {
+    console.log("Updating tasks for day:", dayName, newTasks);
     setDays((prevDays) => ({
       ...prevDays,
       [dayName]: newTasks,
@@ -73,13 +76,13 @@ function TaskPlanning() {
   };
 
   const handleMenuItemClick = (dayName: string) => {
-    console.log("Kliknięto element menu:", dayName);
+    console.log("Clicked menu item:", dayName);
     setDayName(dayName);
     setDisplayedComponent("Day");
   };
 
   const handleCalendarClick = () => {
-    console.log("Kliknięto element Kalendarz");
+    console.log("Clicked Calendar item");
     setDisplayedComponent("Calendar");
   };
 
@@ -98,12 +101,12 @@ function TaskPlanning() {
   };
 
   const handleLoginClick = () => {
-    console.log("Kliknięto element Login");
+    console.log("Clicked Login item");
     setDisplayedComponent("LoginPage");
   };
 
   const handleRegisterClick = () => {
-    console.log("Kliknięto element Register");
+    console.log("Clicked Register item");
     setDisplayedComponent("RegisterPage");
   };
 
