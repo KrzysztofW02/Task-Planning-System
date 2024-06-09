@@ -1,5 +1,7 @@
 ﻿using System.Text;
+using System.Text.Json;
 using System.Threading.Channels;
+using GlobalTasksService.Models;
 using RabbitMQ.Client;
 
 namespace GlobalTasksService.Services
@@ -11,7 +13,6 @@ namespace GlobalTasksService.Services
         public MessageService()
         {
             CreateConnection();
-            SendMessage("TestUser", "TestGlobalID");
         }
         public void CreateConnection()
         {
@@ -31,9 +32,19 @@ namespace GlobalTasksService.Services
                      arguments: null);
         }
 
-        public void SendMessage(string userName, string globalTaskId)
+        public void SendMessage(string userName, GlobalTask globalTask)
         {
-            var body = Encoding.UTF8.GetBytes(userName + ","+ globalTaskId);
+
+            AddUserToGlobalEventMessage message = new AddUserToGlobalEventMessage
+            {
+                _id = globalTask._id,
+                TaskName = globalTask.TaskName,
+                TaskDescription = globalTask.TaskDescription,
+                TaskStart = globalTask.TaskStart,
+                TaskEnd = globalTask.TaskEnd,
+                UserToAddID = userName
+            };
+            var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
 
             _channel.BasicPublish(exchange: string.Empty,
                              routingKey: "hello",

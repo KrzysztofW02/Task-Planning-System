@@ -79,24 +79,24 @@ namespace GlobalTasksService.Services
         }
         public int AddParticipant(string globalTaskId, string participantUserName)
         {
-            //var filter = Builders<BsonDocument>.Filter.Eq("_id", globalTaskId);
-            //var update = Builders<BsonDocument>.Update.Push("Participants", participantUserName);
-            //var result = _globalTasksColleciton.UpdateOne(filter, update);
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", globalTaskId);
+            var update = Builders<BsonDocument>.Update.Push("Participants", participantUserName);
+            var result = _globalTasksColleciton.UpdateOne(filter, update);
 
             //Send message to userTasksService to add task to user
-                
-            _messageService.SendMessage(participantUserName, globalTaskId);
+
+            var taskData = GetGlobalTaskById(globalTaskId);
+            _messageService.SendMessage(participantUserName, taskData);
 
 
-            //if(result.ModifiedCount > 0)
-            //{
-            //    return 1;
-            //}
-            //else
-            //{
-            //    return 0;
-            //}
-            return 1;
+            if(result.ModifiedCount > 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

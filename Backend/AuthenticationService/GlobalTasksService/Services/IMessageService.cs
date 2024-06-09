@@ -1,8 +1,10 @@
-﻿namespace GlobalTasksService.Services
+﻿using GlobalTasksService.Models;
+
+namespace GlobalTasksService.Services
 {
     public interface IMessageService
     {
         void CreateConnection();
-        void SendMessage(string userName, string globalTaskId);
+        void SendMessage(string userName, GlobalTask globalTask);
     }
 }

@@ -3,7 +3,9 @@ using GlobalTasksService.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Bson;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace GlobalTasksService.Controllers
 {
@@ -23,7 +25,6 @@ namespace GlobalTasksService.Controllers
         [HttpGet]
         public IActionResult GetAllGlobal()
         {
-            _messageService.SendMessage("GlobalTasksController", "GetAllGlobal");
             var globalTasks = _taskService.GetGlobalTasks(); 
             if(globalTasks == null)
             {
@@ -68,8 +69,18 @@ namespace GlobalTasksService.Controllers
             }
         }
         [HttpPost("AddParticipant")]
-        public IActionResult AddParticipantToGlobalTask(string username, string globalTaskId)
+        public IActionResult AddParticipantToGlobalTask(string? username, string globalTaskId)
         {
+            if (string.IsNullOrEmpty(username))
+            {
+                username = User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub)?.Value;
+            }
+            if (username.IsNullOrEmpty())
+            {
+                return BadRequest("Invalid username");
+            }
+
+
             var result = _taskService.AddParticipant(globalTaskId, username);
             if (result == 1)
             {
