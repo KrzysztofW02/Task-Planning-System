@@ -171,10 +171,6 @@ const DayComponent: React.FC<DayComponentProps> = ({
     setIsModalOpen(false);
   };
 
-  const handleClearTasks = () => {
-    updateTasks([]);
-  };
-
   const handleTaskClick = (task: Task) => {
     setSelectedTask(task);
     setIsModalOpen(true);

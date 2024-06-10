@@ -112,10 +112,6 @@ const EventComponent: React.FC<EventComponentProps> = ({
     setIsModalOpen(false);
   };
 
-  const handleClearEvents = () => {
-    updateEvents([]);
-  };
-
   const handleEventClick = (event: Event) => {
     setSelectedEvent(event);
     setIsModalOpen(true);
