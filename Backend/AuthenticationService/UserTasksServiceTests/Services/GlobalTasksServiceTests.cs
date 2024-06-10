@@ -16,13 +16,14 @@ namespace MicroservicesTests.Services
 		private GlobalTaskService _globalTasksService;
 		private IMongoDb _mongoDb;
 		private IMapper _mapper;
+		private IMessageService _message;
 		private GlobalTask _globalTask;
 
 		public GlobalTasksServiceTests()
 		{
 			_mongoDb = new MongoDb();
 			_mapper = new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>()).CreateMapper();
-			_globalTasksService = new GlobalTaskService(_mongoDb, _mapper);
+			_globalTasksService = new GlobalTaskService(_mongoDb, _mapper, _message);
 
 			_globalTask = new GlobalTask
 			{
