@@ -121,6 +121,30 @@ function TaskPlanning() {
     setEvents(newEvents);
   };
 
+  const handleJoinEvent = async (id: string) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("No token found, please login");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8081/GlobalTasks/AddParticipant?username=${username}&globalTaskId=${id}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (response.status === 200) {
+        console.log("Successfully joined the event");
+      } else {
+        console.error("Error joining event");
+      }
+    } catch (error) {
+      console.error("Error joining event", error);
+    }
+  };
+
   const handleMenuItemClick = (dayName: string) => {
     console.log("Clicked menu item:", dayName);
     setDayName(dayName);
@@ -216,6 +240,7 @@ function TaskPlanning() {
               updateEvents={updateEvents}
               onDeleteEvent={handleDeleteEvent}
               username={username}
+              onJoinEvent={handleJoinEvent}
             />
           )}
         </div>

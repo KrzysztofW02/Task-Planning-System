@@ -5,10 +5,17 @@ interface EventProps {
   event: string;
   id: string;
   onDeleteEvent: (id: string) => void;
+  onJoinEvent: (id: string) => void;
   onClick: () => void;
 }
 
-const Event: React.FC<EventProps> = ({ event, id, onDeleteEvent, onClick }) => {
+const Event: React.FC<EventProps> = ({
+  event,
+  id,
+  onDeleteEvent,
+  onJoinEvent,
+  onClick,
+}) => {
   return (
     <div className="menu-item" onClick={onClick}>
       <span>{event}</span>
@@ -26,7 +33,7 @@ const Event: React.FC<EventProps> = ({ event, id, onDeleteEvent, onClick }) => {
           variant="outline-primary"
           onClick={(e) => {
             e.stopPropagation();
-            // Handle join event logic here
+            onJoinEvent(id);
           }}
         >
           Join

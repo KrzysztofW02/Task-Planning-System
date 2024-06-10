@@ -25,6 +25,7 @@ interface EventComponentProps {
   updateEvents: (newEvents: Event[]) => void;
   onDeleteEvent: (id: string) => void;
   username: string;
+  onJoinEvent: (id: string) => void;
 }
 
 const EventComponent: React.FC<EventComponentProps> = ({
@@ -32,6 +33,7 @@ const EventComponent: React.FC<EventComponentProps> = ({
   updateEvents,
   onDeleteEvent,
   username,
+  onJoinEvent,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
@@ -158,6 +160,7 @@ const EventComponent: React.FC<EventComponentProps> = ({
                   id={event.id}
                   onDeleteEvent={onDeleteEvent}
                   onClick={() => handleEventClick(event)}
+                  onJoinEvent={onJoinEvent}
                 />
               ))
             )}
