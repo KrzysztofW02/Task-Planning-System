@@ -128,6 +128,27 @@ Deletes a specified global task.
 DELETE /GlobalTasks?taskId=task-456
 ```
 
+## 6. Add new participant
+This endpoint is used to add a participant to a global task. The participant can be specified by their username, or if the username is not provided, the current user's username will be used based on the JWT claims.
+
+### Request Parameters
+
+| Parameter      | Type   | Location  | Required | Description                                                        |
+|----------------|--------|-----------|----------|--------------------------------------------------------------------|
+| `username`     | string | Query/Body| No       | The username of the participant to be added to the global task.    |
+| `globalTaskId` | string | Query/Body| Yes      | The unique identifier of the global task to which the participant is being added. |
+
+### Request Example
+
+#### Example 1: Providing a username
+POST /AddParticipant  
+Content-Type: application/json
+
+{
+    "username": "john.doe",
+    "globalTaskId": "12345"
+}
+
 ## Models
 
 ### GlobalTask
