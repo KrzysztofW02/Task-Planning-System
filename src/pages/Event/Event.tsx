@@ -1,44 +1,46 @@
-import "./Event.css";
+import React from "react";
+import { Button } from "react-bootstrap";
 
-function EventComponent() {
-  return (
-    <>
-      <div className="container eventContainer">
-        <div className="row ctc">
-          <div className="card" style={{ width: "32rem" }}>
-            <div className="card-body">
-              <h5 className="card-title">Wydarzenia</h5>
-              <div className="card-text">
-                <ul>
-                  {/*kod mapowania wydarzenia na li*/}
-                  <li
-                    style={{
-                      textDecoration: "none",
-                    }}
-                  ></li>
-                </ul>
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Dodaj wydarzenie"
-                  aria-describedby="button-addon2"
-                />
-                <button
-                  className="btn btn-outline-secondary"
-                  type="button"
-                  id="button-addon1"
-                >
-                  Dodaj
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+interface EventProps {
+  event: string;
+  id: string;
+  onDeleteEvent: (id: string) => void;
+  onJoinEvent: (id: string) => void;
+  onClick: () => void;
 }
 
-export default EventComponent;
+const Event: React.FC<EventProps> = ({
+  event,
+  id,
+  onDeleteEvent,
+  onJoinEvent,
+  onClick,
+}) => {
+  return (
+    <div className="menu-item" onClick={onClick}>
+      <span>{event}</span>
+      <div>
+        <Button
+          variant="outline-danger"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDeleteEvent(id);
+          }}
+        >
+          Delete
+        </Button>
+        <Button
+          variant="outline-primary"
+          onClick={(e) => {
+            e.stopPropagation();
+            onJoinEvent(id);
+          }}
+        >
+          Join
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default Event;

@@ -1,4 +1,3 @@
-
 using GlobalTasksService.Repositories;
 using GlobalTasksService.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,8 +34,20 @@ namespace GlobalTasksService
                     ValidateLifetime = true, //validate the expiration and not before values in the token
                 };
             });
-            // Add services to the container.
 
+            // Add CORS services to the container.
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:4173")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials(); // Ensure credentials are allowed if using authentication
+                });
+            });
+
+            // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddControllers();
             builder.Services.AddScoped<IMongoDb, MongoDb>();
@@ -55,9 +66,10 @@ namespace GlobalTasksService
                 app.UseSwaggerUI();
             }
             app.UseHttpsRedirection();
+            app.UseCors(); // Make sure this is before UseAuthentication and UseAuthorization
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseAuthorization();
+
             app.MapControllers();
 
             app.Run();

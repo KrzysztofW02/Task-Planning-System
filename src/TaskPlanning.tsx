@@ -4,7 +4,7 @@ import DayComponent from "./pages/Day/Day";
 import CalendarComponent from "./pages/Calendar/Calendar";
 import Sidebar from "./Sidebar";
 import HomeComponent from "./pages/Home/Home";
-import EventComponent from "./pages/Event/Event";
+import EventComponent from "./pages/Event/EventComponent";
 import LogoutComponent from "./pages/LogoutPage/LogoutPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -25,6 +25,13 @@ type Task = {
   description: string;
 };
 
+type Event = {
+  id: string;
+  name: string;
+  timeStart: Date;
+  timeEnd: Date;
+};
+
 function TaskPlanning() {
   const [displayedComponent, setDisplayedComponent] = useState<
     | "Home"
@@ -38,6 +45,7 @@ function TaskPlanning() {
   >("Home");
   const [dayName, setDayName] = useState<string>("");
   const [days, setDays] = useState<Record<string, Task[]>>({});
+  const [events, setEvents] = useState<Event[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -86,6 +94,61 @@ function TaskPlanning() {
       ...prevDays,
       [dayName]: newTasks,
     }));
+  };
+
+  const handleDeleteEvent = async (id: string) => {
+    console.log("Deleting event with id:", id);
+
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("No token found, please login");
+      return;
+    }
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:8081/GlobalTasks?taskId==${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (response.status === 200) {
+        const updatedEvents = events.filter((event) => event.id !== id);
+        console.log("Updated events after deletion:", updatedEvents);
+        setEvents(updatedEvents);
+      } else {
+        console.error("Error deleting event");
+      }
+    } catch (error) {
+      console.error("Error deleting event", error);
+    }
+  };
+
+  const updateEvents = (newEvents: Event[]) => {
+    setEvents(newEvents);
+  };
+
+  const handleJoinEvent = async (id: string) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("No token found, please login");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8081/GlobalTasks/AddParticipant?username=${username}&globalTaskId=${id}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (response.status === 200) {
+        console.log("Successfully joined the event");
+      } else {
+        console.error("Error joining event");
+      }
+    } catch (error) {
+      console.error("Error joining event", error);
+    }
   };
 
   const handleMenuItemClick = (dayName: string) => {
@@ -179,7 +242,15 @@ function TaskPlanning() {
             <RegisterPage onLoginClick={handleLoginClick}></RegisterPage>
           )}
           {displayedComponent === "Logout" && <LogoutComponent />}
-          {displayedComponent === "Event" && <EventComponent />}
+          {displayedComponent === "Event" && (
+            <EventComponent
+              events={events}
+              updateEvents={updateEvents}
+              onDeleteEvent={handleDeleteEvent}
+              username={username}
+              onJoinEvent={handleJoinEvent}
+            />
+          )}
         </div>
       </div>
     </div>
