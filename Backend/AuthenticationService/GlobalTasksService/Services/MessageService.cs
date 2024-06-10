@@ -51,7 +51,6 @@ namespace GlobalTasksService.Services
                              basicProperties: null,
                              body: body);
 
-            Console.WriteLine(" [x] Sent {0}", userName + "," + globalTaskId);
         }
 
     }
