@@ -11,7 +11,7 @@ namespace GlobalTasksService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class GlobalTasksController : Controller
     {
         private IGlobalTasksService _taskService;
