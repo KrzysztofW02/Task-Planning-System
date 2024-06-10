@@ -14,7 +14,8 @@ namespace GlobalTasksService.Models
         public GlobalTask()
         {
             _id = Guid.NewGuid().ToString();
-            Participants = new List<string>();
+            Participants ??= new List<string>();
+            TaskDescription ??= "";
         }
     }
 }
