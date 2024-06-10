@@ -1,28 +1,16 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AuthenticationService.Models;
-using AuthenticationService.Services;
+﻿using AuthenticationService.Models;
 
-namespace MicroservicesTests.Services
+namespace AuthenticationService.Services.Tests
 {
     [TestClass()]
-    internal class AuthenticationServiceTests
+    public class UserServiceTests
     {
         private IUserService _userService;
         private UserModel _testUser;
-        public AuthenticationServiceTests(IUserService userService)
+        public UserServiceTests(IUserService userService)
         {
             _userService = userService; 
-        }
-
-        [TestInitialize()]
-        public void Setup()
-        {
-            var _testUser = new UserModel
+            _testUser = new UserModel
             {
                 Username = "TestUser",
                 Password = "TestPassword"
@@ -49,8 +37,18 @@ namespace MicroservicesTests.Services
             _userService.AddUser(_testUser.Username, _testUser.Password);
 
             //Act
+            var result = _userService.AreUserCredendialsValid(_testUser.Username, _testUser.Password);
+            var invalidPasswordResult = _userService.AreUserCredendialsValid(_testUser.Username, "InvalidPassword");
+            var invalidUsernameResult = _userService.AreUserCredendialsValid("InvalidUsername", _testUser.Password);
 
 
+            //Clean up
+            _userService.DeleteUser(_testUser.Username);
+
+            //Assert
+            Assert.IsTrue(result);
+            Assert.IsFalse(invalidPasswordResult);
+            Assert.IsFalse(invalidUsernameResult);
         }
     }
 }

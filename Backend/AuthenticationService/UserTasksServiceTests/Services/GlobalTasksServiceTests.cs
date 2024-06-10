@@ -78,7 +78,5 @@ namespace MicroservicesTests.Services
 			Assert.AreEqual(1, successResult);
 			Assert.IsTrue(allTasks.Count > 0);
 		}
-
-
 	}
 }
