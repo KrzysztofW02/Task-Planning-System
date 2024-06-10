@@ -66,7 +66,7 @@ namespace UserTasksService.Services
             };
 
             _userService.AddUserTask(task);
-            Console.WriteLine(message);
+            Console.WriteLine(JsonSerializer.Serialize(message));
         }
     }
 

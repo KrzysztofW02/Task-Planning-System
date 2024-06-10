@@ -46,6 +46,10 @@ namespace MicroservicesTests.Services
         public void LogInTest()
         {
             //Arrange
+            _userService.AddUser(_testUser.Username, _testUser.Password);
+
+            //Act
+
 
         }
     }
