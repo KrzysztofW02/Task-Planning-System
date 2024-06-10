@@ -39,7 +39,7 @@ namespace UserTasksService.Services
             {
                 var body = ea.Body.ToArray();
                 var message = JsonSerializer.Deserialize<AddUserToGlobalEventMessage>(Encoding.UTF8.GetString(body));
-
+                AddGlobalEventToUser(message);
 
             };
             channel.BasicConsume(queue: "hello",
@@ -49,6 +49,11 @@ namespace UserTasksService.Services
         }
         public void AddGlobalEventToUser(AddUserToGlobalEventMessage message)
         {
+            var userTasks = _userService.GetUserTasks(message.UserToAddID);
+            if (userTasks.FindAll(x => x.GlobalTaskId == message._id).Count != 0 )
+            {
+                return;
+            }
             var task = new UserTask
             {
                 UserName = message.UserToAddID,
@@ -61,6 +66,7 @@ namespace UserTasksService.Services
             };
 
             _userService.AddUserTask(task);
+            Console.WriteLine(message);
         }
     }
 

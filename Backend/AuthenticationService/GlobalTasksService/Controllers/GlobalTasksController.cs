@@ -11,7 +11,6 @@ namespace GlobalTasksService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    //[Authorize]
     public class GlobalTasksController : Controller
     {
         private IGlobalTasksService _taskService;
@@ -89,7 +88,7 @@ namespace GlobalTasksService.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest(result);
             }
         }
 
