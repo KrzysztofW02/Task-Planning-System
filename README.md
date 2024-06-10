@@ -50,7 +50,7 @@ cd task-planning-system
 - docker run --rm  -it -p="8080:8080" image_name 
 - docker-compose up --build 
 
-## Running cypress tests:
+## Running front-end tests:
 
 - npx cypress open
 
