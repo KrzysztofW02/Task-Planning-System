@@ -59,7 +59,7 @@ namespace UserTasksService.Controllers
                 return BadRequest("User task already exists");
             }
         }
-        [HttpPut]
+        [HttpPut("UpdateTask")]
         public IActionResult UpdateUserTask([FromBody] UserTask userTask)
         {
             if(!ModelState.IsValid)

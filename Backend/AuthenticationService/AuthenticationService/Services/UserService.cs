@@ -1,6 +1,7 @@
 ﻿using AuthenticationService.Repositories;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Diagnostics.Eventing.Reader;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -19,11 +20,11 @@ namespace AuthenticationService.Services
         {
             if (Username == "" || Password == "")
             {
-                return 0;
+                return 1;
             }
             if (UserAlreadyExists(Username))
             {
-                return 0;
+                return 1;
             }
 
             string salt = CreateSalt();
@@ -38,7 +39,21 @@ namespace AuthenticationService.Services
             };
 
             _usersCollection.InsertOne(user);
-            return 1;
+            return 0;
+        }
+        public int DeleteUser(string userName)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", userName);
+            var result = _usersCollection.DeleteOne(filter);
+            if (result == null)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
 
         public bool AreUserCredendialsValid(string Password, string Username)
