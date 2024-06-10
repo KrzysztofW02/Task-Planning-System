@@ -41,7 +41,7 @@ const EventForm: React.FC<EventFormProps> = ({
     <div>
       <FormControl
         type="text"
-        placeholder="Event Name"
+        placeholder="Nazwa Wydarzenia"
         value={name}
         onChange={(e) => setName(e.target.value)}
         className="form-control-margin"
