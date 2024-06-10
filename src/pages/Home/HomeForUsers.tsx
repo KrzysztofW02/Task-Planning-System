@@ -28,9 +28,7 @@ function HomeForUsersComponent({
           <Card.Body>
             <Card.Title>Kalendarz</Card.Title>
             <Card.Text>Sprawdź swój Kalendarz</Card.Text>
-            <button onClick={onCalendarClick}>
-              Idź do kalendarza
-            </button>
+            <button onClick={onCalendarClick}>Idź do kalendarza</button>
           </Card.Body>
         </Card>
 
@@ -38,13 +36,10 @@ function HomeForUsersComponent({
           <Card.Body>
             <Card.Title>Wydarzenia</Card.Title>
             <Card.Text>Sprawdź swoje wydarzenia</Card.Text>
-            <button onClick={onEventsClick}>
-              Idź do wydarzeń
-            </button>
+            <button onClick={onEventsClick}>Idź do wydarzeń</button>
           </Card.Body>
         </Card>
       </div>
-
     </div>
   );
 }

@@ -45,5 +45,4 @@ function HomeComponent({ onLoginClick, onRegisterClick }: HomeComponentProps) {
   );
 }
 
-
 export default HomeComponent;

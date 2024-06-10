@@ -1,13 +1,13 @@
-import "./RegisterPage.css"
+import "./RegisterPage.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
 
-interface RegisterPageProps{
+interface RegisterPageProps {
   onLoginClick: () => void;
 }
 
-function RegisterPage({onLoginClick}: RegisterPageProps) {
+function RegisterPage({ onLoginClick }: RegisterPageProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
@@ -30,7 +30,6 @@ function RegisterPage({onLoginClick}: RegisterPageProps) {
         setIsRegistered(true);
       } else {
         console.error("Error during registration");
-        
       }
     } catch (error) {
       console.error("Error during registration", error);
@@ -48,15 +47,15 @@ function RegisterPage({onLoginClick}: RegisterPageProps) {
     );
   }
 
-    if (registeredAlready) {
-      return (
-        <div style={{ minHeight: "100vh", color: "white" }}>
-          <h2 className="registersuccess" style={{marginTop:'6rem'}}>
-            To konto już istnieje
-          </h2>
-        </div>
-      );
-    }
+  if (registeredAlready) {
+    return (
+      <div style={{ minHeight: "100vh", color: "white" }}>
+        <h2 className="registersuccess" style={{ marginTop: "6rem" }}>
+          To konto już istnieje
+        </h2>
+      </div>
+    );
+  }
 
   return (
     <div className="login-container">
@@ -90,7 +89,9 @@ function RegisterPage({onLoginClick}: RegisterPageProps) {
           </Form.Group>
           <br />
           <div className="buttonregister">
-            <button type="submit" className="btnregisterpage">Zarejestruj się</button>
+            <button type="submit" className="btnregisterpage">
+              Zarejestruj się
+            </button>
             <button onClick={onLoginClick}>Powrót</button>
           </div>
         </Form>

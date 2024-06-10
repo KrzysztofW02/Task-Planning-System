@@ -238,7 +238,9 @@ const DayComponent: React.FC<DayComponentProps> = ({
               >
                 Dodaj nowe zadanie
               </button>
-              <button onClick={onBackToCalendar} className="btndayy">Powrót</button>
+              <button onClick={onBackToCalendar} className="btndayy">
+                Powrót
+              </button>
             </div>
             <div className="menu-items">
               {filteredTasks.length === 0 ? (

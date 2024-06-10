@@ -10,8 +10,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HomeForUsersComponent from "./pages/Home/HomeForUsers";
 
-declare global{
-  interface Window{
+declare global {
+  interface Window {
     onLoginClickScope: () => void;
   }
 }

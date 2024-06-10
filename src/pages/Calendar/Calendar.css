@@ -1,4 +1,4 @@
-.calendar-container{
+.calendar-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
     transform: scale(2.3);
 }
 
-.react-datepicker{
+.react-datepicker {
     font-family: "Lato", sans-serif;
     font-weight: 400 !important;
     text-align: center !important;
@@ -22,10 +22,10 @@
     border-radius: 8px !important;
 }
 
-.react-datepicker__day--today{
+.react-datepicker__day--today {
     font-weight: 600 !important;
 }
 
-.react-datepicker__day:hover{
+.react-datepicker__day:hover {
     border-radius: 8px !important;
 }

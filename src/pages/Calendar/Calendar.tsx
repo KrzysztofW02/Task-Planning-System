@@ -1,6 +1,6 @@
 import "./Calendar.css";
 import React from "react";
-import pl from "date-fns/locale/pl"
+import pl from "date-fns/locale/pl";
 import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import { Task } from "../Day/Type";

@@ -27,12 +27,18 @@ function Sidebar({ onSidebarItemClick }: Sidebar) {
           T4SK3R
         </li>
         <li className="sidebartext">
-          <a onClick={() => onSidebarItemClick("HomeForUsers")} className="homeee">
+          <a
+            onClick={() => onSidebarItemClick("HomeForUsers")}
+            className="homeee"
+          >
             <HomeIcon style={{ scale: "1.7" }} />
           </a>
         </li>
         <li className="sidebartext">
-          <a onClick={() => onSidebarItemClick("Calendar")} className="calendarrr">
+          <a
+            onClick={() => onSidebarItemClick("Calendar")}
+            className="calendarrr"
+          >
             <CalendarIcon style={{ scale: "1.7" }} />
           </a>
         </li>
