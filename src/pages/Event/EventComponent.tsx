@@ -32,7 +32,6 @@ const EventComponent: React.FC<EventComponentProps> = ({
   events,
   updateEvents,
   onDeleteEvent,
-  username,
   onJoinEvent,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,16 +1,19 @@
-FROM node:20-alpine
+FROM node:20-alpine 
 
-WORKDIR /src/app
+WORKDIR /app
 
 COPY package.json .
 
 RUN npm install
 
+COPY src/ /app/src/
+
+COPY src/assets/ /app/assets/
+
 COPY . .
 
-RUN npm run build
+RUN npm run build   
 
-EXPOSE 8080
+EXPOSE 4173
 
 CMD [ "npm", "run", "preview" ]
-

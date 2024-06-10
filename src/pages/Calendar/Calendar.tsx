@@ -1,12 +1,12 @@
 import "./Calendar.css";
-import React from "react";
-import pl from "date-fns/locale/pl";
+import { pl } from "date-fns/locale/pl";
 import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import { Task } from "../Day/Type";
 import "react-datepicker/dist/react-datepicker.css";
 import "date-fns";
-registerLocale("pl", pl);
+import { Locale } from "date-fns";
+registerLocale('pl', pl as Locale);
 
 interface CalendarComponentProps {
   onMenuClick: (dayName: string) => void;
