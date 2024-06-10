@@ -46,9 +46,12 @@ cd task-planning-system
 
 ## Running docker app:
 
-
-- docker-compose up --build 
 - docker build . -t "image_name"
 - docker run --rm  -it -p="8080:8080" image_name 
+- docker-compose up --build 
+
+## Running cypress tests:
+
+- npx cypress open
 
 
