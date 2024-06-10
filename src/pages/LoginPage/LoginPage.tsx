@@ -54,6 +54,7 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
           <Form.Group>
             <Form.Label>Zaloguj się</Form.Label>
             <Form.Control
+              id="username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -68,7 +69,7 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              id="inputPassword5"
+              id="password"
               aria-describedby="passwordHelpBlock"
               placeholder="Hasło"
               style={{ marginBottom: "8px" }}
@@ -77,8 +78,8 @@ function LoginPage({ onRegisterClick, onLoginSuccess }: LoginPageProps) {
           </Form.Group>
           <br />
           <div className="buttonsloginpage">
-            <button type="submit" style={{marginRight:'40px'}}>Zaloguj się</button>
-            <button type="button" onClick={onRegisterClick}>
+            <button type="submit" style={{marginRight:'40px'}} className="btnloginn">Zaloguj się</button>
+            <button type="button" onClick={onRegisterClick} className="btnregisterr">
               Zarejestruj się
             </button>
           </div>

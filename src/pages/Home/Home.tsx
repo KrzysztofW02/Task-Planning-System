@@ -19,7 +19,7 @@ function HomeComponent({ onLoginClick, onRegisterClick }: HomeComponentProps) {
           </div>
           <div className="col2">
             <button
-              className="btnn"
+              className="btnn btnlogin"
               onClick={() => {
                 console.log("Login button clicked");
                 onLoginClick();
@@ -30,7 +30,7 @@ function HomeComponent({ onLoginClick, onRegisterClick }: HomeComponentProps) {
           </div>
           <div className="col2">
             <button
-              className="btnn"
+              className="btnn btnregister"
               onClick={() => {
                 console.log("Register button clicked");
                 onRegisterClick();
@@ -44,5 +44,6 @@ function HomeComponent({ onLoginClick, onRegisterClick }: HomeComponentProps) {
     </>
   );
 }
+
 
 export default HomeComponent;

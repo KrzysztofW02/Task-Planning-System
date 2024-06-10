@@ -10,6 +10,12 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HomeForUsersComponent from "./pages/Home/HomeForUsers";
 
+declare global{
+  interface Window{
+    onLoginClickScope: () => void;
+  }
+}
+
 type Task = {
   id: string;
   task: string;
@@ -122,6 +128,8 @@ function TaskPlanning() {
     setUsername(username);
     setDisplayedComponent("HomeForUsers");
   };
+
+  window.onLoginClickScope = () => handleLoginClick();
 
   return (
     <div className="AppBG">

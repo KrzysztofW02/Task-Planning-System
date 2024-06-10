@@ -16,6 +16,7 @@ const Task: React.FC<TaskProps> = ({ task, id, onDeleteTask, onClick }) => {
       <span>{task}</span>
       <div>
         <Button
+          className="rmvbtnn"
           variant="outline-danger"
           onClick={(e) => {
             e.stopPropagation();
@@ -23,7 +24,7 @@ const Task: React.FC<TaskProps> = ({ task, id, onDeleteTask, onClick }) => {
             onDeleteTask(id);
           }}
         >
-          Remove
+          Usun
         </Button>
       </div>
     </div>

@@ -11,6 +11,7 @@ function RegisterPage({onLoginClick}: RegisterPageProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [registeredAlready, setresgiteredAlready] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -29,15 +30,33 @@ function RegisterPage({onLoginClick}: RegisterPageProps) {
         setIsRegistered(true);
       } else {
         console.error("Error during registration");
+        
       }
     } catch (error) {
       console.error("Error during registration", error);
+      setresgiteredAlready(true);
     }
   };
 
   if (isRegistered) {
-    return <p>Udało Ci się pomyślnie zarejestrować!</p>;
+    return (
+      <div style={{ minHeight: "100vh", color: "white" }}>
+        <h2 className="registersuccess" style={{ marginTop: "6rem" }}>
+          Udało ci się pomyślnie zarejestrować!
+        </h2>
+      </div>
+    );
   }
+
+    if (registeredAlready) {
+      return (
+        <div style={{ minHeight: "100vh", color: "white" }}>
+          <h2 className="registersuccess" style={{marginTop:'6rem'}}>
+            To konto już istnieje
+          </h2>
+        </div>
+      );
+    }
 
   return (
     <div className="login-container">
@@ -71,7 +90,7 @@ function RegisterPage({onLoginClick}: RegisterPageProps) {
           </Form.Group>
           <br />
           <div className="buttonregister">
-            <button type="submit">Zarejestruj się</button>
+            <button type="submit" className="btnregisterpage">Zarejestruj się</button>
             <button onClick={onLoginClick}>Powrót</button>
           </div>
         </Form>

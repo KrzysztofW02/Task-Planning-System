@@ -62,6 +62,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         onChange={(e) => setTask(e.target.value)}
         className="form-control-margin"
         required
+        id="addatask"
       />
       <FormControl
         type="text"
@@ -69,6 +70,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         className="form-control-margin"
+        id="categoryyy"
       />
       <FormControl
         type="datetime-local"
@@ -88,9 +90,12 @@ const TaskForm: React.FC<TaskFormProps> = ({
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className="form-control-margin"
+        id="desccc"
       />
       <div className="button-container">
-        <button onClick={handleSave}>Zapisz</button>
+        <button onClick={handleSave} className="savebtnn">
+          Zapisz
+        </button>
         <button onClick={onCancel}>Anuluj</button>
       </div>
     </div>

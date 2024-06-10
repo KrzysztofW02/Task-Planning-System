@@ -17,7 +17,7 @@ function HomeForUsersComponent({
       <div className="row1">
         <div className="col1">
           <div className="text">
-            <h1>Witaj {username}!</h1>
+            <h1 className="hello1">Witaj {username}!</h1>
             <br></br>
           </div>
         </div>
