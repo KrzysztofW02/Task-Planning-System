@@ -107,7 +107,7 @@ function TaskPlanning() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8081/GlobalTasks?taskId==${id}`,
+        `http://localhost:8081/GlobalTasks?taskId=${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

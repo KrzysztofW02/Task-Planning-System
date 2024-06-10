@@ -263,11 +263,6 @@ const DayComponent: React.FC<DayComponentProps> = ({
                 ))
               )}
             </div>
-            {tasks.length > 1 && filteredTasks.length > 1 && (
-              <button className="clear-button" onClick={handleClearTasks}>
-                Wyczyść
-              </button>
-            )}
           </div>
         </div>
       </div>

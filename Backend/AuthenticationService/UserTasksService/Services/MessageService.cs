@@ -58,7 +58,7 @@ namespace UserTasksService.Services
             {
                 UserName = message.UserToAddID,
                 TaskName = message.TaskName,
-                TaskDescription = message.TaskDescription,
+                TaskDescription = "Global Event",
                 TaskStart = message.TaskStart,
                 TaskEnd = message.TaskEnd,
                 GlobalTaskId = message._id,

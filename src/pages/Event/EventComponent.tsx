@@ -166,11 +166,6 @@ const EventComponent: React.FC<EventComponentProps> = ({
               ))
             )}
           </div>
-          {events.length > 1 && (
-            <button className="clear-button" onClick={handleClearEvents}>
-              Clear
-            </button>
-          )}
         </div>
       </div>
       <Modal
