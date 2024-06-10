@@ -11,7 +11,7 @@ namespace UserTasksService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UserTaskController : Controller
     {
         private IUserTaskService _userTasksService;
