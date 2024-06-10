@@ -2,7 +2,7 @@
 {
 	public class UserTask
 	{
-		public string _id { get; set; }
+		public string? _id { get; set; }
 		public string? UserName { get; set; }
 		public string TaskName { get; set; }
 		public string TaskDescription { get; set; }
