@@ -15,11 +15,10 @@ namespace UserTasksService.Controllers
     public class UserTaskController : Controller
     {
         private IUserTaskService _userTasksService;
-        private IMessageService _messageService;
-        public UserTaskController(IUserTaskService userTasksService, IMessageService messageService)
+        public UserTaskController(IUserTaskService userTasksService, IMessageService messages)
         {
             _userTasksService = userTasksService;
-            _messageService = messageService;
+            messages.CreateConnection();
         }
         [HttpGet("Get")]
         public IActionResult GetAllUserTasks(string UserName)
@@ -61,7 +60,7 @@ namespace UserTasksService.Controllers
                 return BadRequest("User task already exists");
             }
         }
-        [HttpPut]
+        [HttpPut("UpdateTask")]
         public IActionResult UpdateUserTask([FromBody] UserTask userTask)
         {
             if(!ModelState.IsValid)
