@@ -27,7 +27,7 @@ const Event: React.FC<EventProps> = ({
             onDeleteEvent(id);
           }}
         >
-          Delete
+          Usun
         </Button>
         <Button
           variant="outline-primary"
@@ -36,7 +36,7 @@ const Event: React.FC<EventProps> = ({
             onJoinEvent(id);
           }}
         >
-          Join
+          Dolacz
         </Button>
       </div>
     </div>

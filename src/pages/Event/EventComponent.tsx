@@ -32,7 +32,6 @@ const EventComponent: React.FC<EventComponentProps> = ({
   events,
   updateEvents,
   onDeleteEvent,
-  username,
   onJoinEvent,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,7 +47,7 @@ const EventComponent: React.FC<EventComponentProps> = ({
     try {
       const response = await axios.get(`http://localhost:8081/GlobalTasks/`, {
         headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true, // Ensure credentials are included if needed
+        withCredentials: true,
       });
       if (response.status === 200) {
         const events: Event[] = response.data.map((event: BackendEvent) => ({
@@ -82,17 +81,19 @@ const EventComponent: React.FC<EventComponentProps> = ({
       return;
     }
 
-    const newBackendEvent: Partial<BackendEvent> = {
-      taskName: name,
-      taskStart: timeStart.toISOString(),
-      taskEnd: timeEnd.toISOString(),
-    };
-
-    if (id) {
-      newBackendEvent._id = id;
-    }
-
     try {
+      if (id) {
+        await axios.delete(`http://localhost:8081/GlobalTasks?taskId=${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+
+      const newBackendEvent: Partial<BackendEvent> = {
+        taskName: name,
+        taskStart: timeStart.toISOString(),
+        taskEnd: timeEnd.toISOString(),
+      };
+
       const response = await axios.post(
         "http://localhost:8081/GlobalTasks/",
         newBackendEvent,

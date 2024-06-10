@@ -135,24 +135,28 @@ const DayComponent: React.FC<DayComponentProps> = ({
       return;
     }
 
-    const newBackendTask: Partial<BackendTask> = {
-      userName: username,
-      taskName: task,
-      taskDescription: description,
-      taskStart: timeStart.toISOString(),
-      taskEnd: timeEnd.toISOString(),
-      category: category,
-    };
-
-    if (id) {
-      newBackendTask._id = id;
-    }
-
     try {
+      if (id) {
+        await axios.delete(`http://localhost:8082/UserTask?taskId=${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+
+      const newBackendTask: Partial<BackendTask> = {
+        userName: username,
+        taskName: task,
+        taskDescription: description,
+        taskStart: timeStart.toISOString(),
+        taskEnd: timeEnd.toISOString(),
+        category: category,
+      };
+
       const response = await axios.post(
-        "http://localhost:8082/UserTask/",
+        `http://localhost:8082/UserTask`,
         newBackendTask,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
       if (response.status === 200) {
