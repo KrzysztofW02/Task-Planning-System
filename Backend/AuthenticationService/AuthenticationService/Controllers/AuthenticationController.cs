@@ -49,11 +49,11 @@ namespace AuthenticationService.Controllers
 
             if(result == 1)
             {
-                return Ok();
+                return BadRequest("User already exists");
             }
             else
             {
-                return BadRequest("User already exists");
+                return Ok();
             }
         }
 
