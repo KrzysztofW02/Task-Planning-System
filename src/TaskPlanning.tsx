@@ -45,9 +45,16 @@ function TaskPlanning() {
   const handleDeleteTask = async (id: string) => {
     console.log("Deleting task with id:", id);
 
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("No token found, please login");
+      return;
+    }
+
     try {
       const response = await axios.delete(
-        `http://localhost:8082/UserTask?taskId=${id}`
+        `http://localhost:8082/UserTask?taskId=${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.status === 200) {

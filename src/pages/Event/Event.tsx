@@ -12,11 +12,10 @@ function EventComponent() {
                 <ul>
                   {/*kod mapowania wydarzenia na li*/}
                   <li
-                  style={{
-                    textDecoration:'none',
-                  }}>
-                    
-                  </li>
+                    style={{
+                      textDecoration: "none",
+                    }}
+                  ></li>
                 </ul>
               </div>
               <div className="input-group mb-3">
