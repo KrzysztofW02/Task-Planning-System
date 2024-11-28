@@ -35,14 +35,12 @@ cd task-planning-system
 
 4. **Set Up Frontend**:
 
-- Navigate to the frontend directory and follow the instructions in the README.md file to set up and run the frontend application.
 - run with npm run dev
 
 ## Acknowledgements
 
 - This project was inspired by the need for efficient task planning and management in modern software development environments.
 - We thank all the contributors who have helped in the development and improvement of this project. (all 4 lol)
-
 
 ## Running docker app:
 
