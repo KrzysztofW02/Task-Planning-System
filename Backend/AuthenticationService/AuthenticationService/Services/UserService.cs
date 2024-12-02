@@ -1,7 +1,6 @@
 ﻿using AuthenticationService.Repositories;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Diagnostics.Eventing.Reader;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -59,7 +58,7 @@ namespace AuthenticationService.Services
         public bool AreUserCredendialsValid(string Password, string Username)
         {
             var user = _usersCollection.Find(Builders<BsonDocument>.Filter.Eq("Username", Username)).FirstOrDefault();
-            if(user == null)
+            if (user == null)
             {
                 return false;
             }

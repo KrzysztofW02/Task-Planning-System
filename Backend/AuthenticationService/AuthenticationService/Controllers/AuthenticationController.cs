@@ -21,11 +21,11 @@ namespace AuthenticationService.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UserModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid data");
             }
-            if(_userService.AreUserCredendialsValid(model.Password, model.Username))
+            if (_userService.AreUserCredendialsValid(model.Password, model.Username))
             {
                 var userRole = _userService.GetUserRole(model.Username);
                 return Ok(_JWTService.GenerateSecurityToken(model.Username, userRole));
@@ -40,14 +40,29 @@ namespace AuthenticationService.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] UserModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid data");
             }
 
+            if (model.Username == "" || model.Password == "")
+            {
+                return BadRequest("Invalid data");
+            }
+
+            if (model.Username.Length < 3 || model.Password.Length < 3)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            if (model.Username == model.Password)
+            {
+                return BadRequest("Password can't be the same as login");
+            }
+
             var result = _userService.AddUser(model.Username, model.Password);
 
-            if(result == 1)
+            if (result == 1)
             {
                 return BadRequest("User already exists");
             }

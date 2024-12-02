@@ -27,7 +27,7 @@ namespace AuthenticationService
 
             builder.Services.AddSingleton<IMongoDb, MongoDb>();
             builder.Services.AddSingleton<IUserService, UserService>();
-            builder.Services.AddSingleton<IJWTService,  JWTService>();
+            builder.Services.AddSingleton<IJWTService, JWTService>();
 
             var app = builder.Build();
 
