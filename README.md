@@ -46,7 +46,7 @@ cd task-planning-system
 
 - docker build . -t "image_name"
 - docker run --rm  -it -p="8080:8080" image_name 
-- docker-compose up --build 
+- docker-compose up --build <== in location: Backend/AuthenticationService
 
 ## Running front-end tests:
 
