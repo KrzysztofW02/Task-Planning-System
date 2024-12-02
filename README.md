@@ -43,9 +43,6 @@ cd task-planning-system
 - We thank all the contributors who have helped in the development and improvement of this project. (all 4 lol)
 
 ## Running docker app:
-
-- docker build . -t "image_name"
-- docker run --rm  -it -p="8080:8080" image_name 
 - docker-compose up --build <== in location: Backend/AuthenticationService
 
 ## Running front-end tests:
