@@ -14,7 +14,7 @@ Welcome to the Task Planning System repository! This is a microservices-based ap
 - **Containerization**: Containerized using Docker for easy deployment and scalability across different environments.
 - **RESTful APIs**: Implements RESTful APIs for seamless communication between frontend and backend services.
 - **Authentication and Authorization**: Ensures secure access to the system with authentication and authorization mechanisms.
-- **Database Integration**: Integrates with a relational database (e.g., PostgreSQL, MySQL) for storing task-related data.
+- **Database Integration**: Integrates with a NoSQL MongoDB database for storing task-related data.
 
 ## Getting Started
 
