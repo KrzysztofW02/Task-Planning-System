@@ -35,8 +35,10 @@ cd task-planning-system
  "Backend/AuthenticationService"
 
 4. **Set Up Frontend**:
-
-- run with npm run dev or docker run (for container - container comms)
+Go into main directory, then:
+- run npm install
+- docker build
+- run with npm run dev (for development) or docker run (for container - container comms)
 
 ## Acknowledgements
 
