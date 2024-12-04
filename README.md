@@ -31,11 +31,12 @@ cd task-planning-system
 
 3. **Set Up Backend**:
 
-- Navigate to the backend directory and follow the instructions in the README.md file to set up and run the backend services.
+- Install docker, and run docker-compose in
+ "Backend/AuthenticationService"
 
 4. **Set Up Frontend**:
 
-- run with npm run dev
+- run with npm run dev or docker run (for container - container comms)
 
 ## Acknowledgements
 
